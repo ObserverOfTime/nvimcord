@@ -1,0 +1,173 @@
+*nvimcord.txt*            For NVIM v0.7.0           Last change: 2022 March 19
+
+==============================================================================
+Table of Contents                                 *nvimcord-table-of-contents*
+
+1. nvimcord                                                |nvimcord-nvimcord|
+  - Installation                                       |nvimcord-installation|
+  - Configuration                                     |nvimcord-configuration|
+  - Commands                                               |nvimcord-commands|
+  - TODO                                                       |nvimcord-todo|
+  - Assets                                                   |nvimcord-assets|
+  - Alternatives                                       |nvimcord-alternatives|
+
+==============================================================================
+1. nvimcord                                                *nvimcord-nvimcord*
+
+A Discord Rich Presence plugin for Neovim written in Lua.
+
+INSTALLATION                                           *nvimcord-installation*
+
+PACKER ~
+
+>
+    use 'ObserverOfTime/nvimcord'
+<
+
+
+PLUG ~
+
+>
+    Plug 'ObserverOfTime/nvimcord'
+<
+
+
+DEIN ~
+
+>
+    call dein#add('ObserverOfTime/nvimcord')
+<
+
+
+CONFIGURATION                                         *nvimcord-configuration*
+
+>
+    -- NOTE: these are the defaults
+    require('nvimcord').setup {
+        -- Start the RPC manually (boolean)
+        autostart = false,
+        -- Set the client ID (string)
+        client_id = '954365489214291979',
+        -- Set the log level (enum)
+        log_level = vim.log.levels.INFO,
+        -- Get the workspace name (function|string)
+        workspace_name = function()
+          return --[[cwd basename]]
+        end,
+        -- Get the workspace URL (function|string)
+        workspace_url = function()
+          return ''
+        end
+    }
+<
+
+
+Options can also be configured using Vim variables.
+
+This can be useful when using |exrc| or a project plugin.
+
+>
+    let g:nvimcord#autostart = v:false
+    let g:nvimcord#client_id = '954365489214291979'
+    let g:nvimcord#log_level = 2
+    " NOTE: these can only be defined as strings
+    let g:nvimcord#workspace_name = ''
+    let g:nvimcord#workspace_url = ''
+<
+
+
+FILETYPES ~
+
+>
+    local fts = require 'nvimcord.filetypes'
+    
+    -- NOTE: the asset can also be an image URL
+    
+    -- override options
+    fts.filetype['vim'].name = 'Vim Script'
+    fts.filetype['vim'].asset = 'neovim'
+    
+    -- new filetype
+    fts.filetype['teal'] = {
+        name = 'Teal',
+        asset = 'lua'
+    }
+    
+    -- new pattern
+    fts.pattern['^%.gitignore$'] = {
+        name = 'git ignore',
+        asset = 'git'
+    }
+    
+    -- ignore
+    fts.ignore('vim')
+    -- unignore
+    fts.ignore['netrw'] = false
+<
+
+
+COMMANDS                                                   *nvimcord-commands*
+
+                                                    *nvimcord-:NvimcordUpdate*
+
+:NvimcordUpdate                        Start or update the rich presence.
+
+
+                                                      *nvimcord-:NvimcordStop*
+
+:NvimcordStop                          Stop the rich presence.
+
+
+                                                 *nvimcord-:NvimcordFiletypes*
+
+:NvimcordFiletypes                     List the supported filetypes.
+
+
+                                                    *nvimcord-:NvimcordAssets*
+
+:NvimcordAssets                        List the supported assets.
+
+
+TODO                                                           *nvimcord-todo*
+
+
+- Ignore by filename
+- Cache filename patterns
+- Detect workspace through git
+- Set idle status after some time
+
+
+ASSETS                                                       *nvimcord-assets*
+
+The assets are available here <https://cloud.disroot.org/s/3HCpppopkrcR6iK>.
+
+SOURCES ~
+
+
+- file-icons/icons <https://github.com/file-icons/icons>
+- file-icons/DevOpicons <https://github.com/file-icons/DevOpicons>
+- file-icons/MFixx <https://github.com/file-icons/MFixx>
+- primer/octicons <https://github.com/primer/octicons>
+
+
+PALETTE ~
+
+The icons use the basic colours from file-icons/atom
+<https://github.com/file-icons/atom/blob/master/styles/colours.less#L10-L19>.
+
+ALTERNATIVES                                           *nvimcord-alternatives*
+
+
+- presence.nvim <https://github.com/andweeb/presence.nvim> (Lua)
+- discord.nvim <https://github.com/aurieh/discord.nvim> (Python)
+    - or my own fork <https://github.com/ObserverOfTime/discord.nvim>
+- vimsence <https://github.com/vimsence/vimsence> (Python)
+- vimdiscord <https://github.com/vbe0201/vimdiscord> (Python)
+- vimcord <https://github.com/Stoozy/vimcord> (Python)
+- nvimsence.rs <https://github.com/nickofolas/nvimsence.rs> (Rust)
+- vdrpc <https://github.com/pucka906/vdrpc> (C)
+
+
+Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+
+vim:tw=78:ts=8:noet:ft=help:norl:
