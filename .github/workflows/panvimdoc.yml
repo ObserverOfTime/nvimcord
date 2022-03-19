@@ -1,0 +1,18 @@
+name: Generate docs
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  panvimdoc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: kdheepak/panvimdoc@v2.7.3
+        with:
+          vimdoc: nvimcord
+          version: NVIM v0.7.0
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto generate docs
