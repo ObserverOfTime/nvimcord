@@ -25,6 +25,8 @@ filetypes.filetype = setmetatable({
     ['asm'] = ft('assembly', 'asm'),
     ['asp'] = ft('ASP.NET', 'dotnet'),
     ['aspvbs'] = ft('ASP.NET', 'dotnet'),
+    ['autohotkey'] = ft('AutoHotkey', 'autohotkey'),
+    ['automake'] = ft('Automake', 'gnu'),
     ['awk'] = ft('AWK', 'shell'),
     ['bash'] = ft('Bash', 'shell'),
     ['bib'] = ft('BibTeX', 'bib'),
@@ -39,6 +41,7 @@ filetypes.filetype = setmetatable({
     ['chicken'] = ft('Chicken', 'scheme'),
     ['clojure'] = ft('Clojure', 'clojure'),
     ['cmake'] = ft('CMake', 'cmake'),
+    ['cobol'] = ft('COBOL', 'cobol'),
     ['coffee'] = ft('CofeeScript', 'coffeescript'),
     ['conf'] = ft('config', 'config'),
     ['config'] = ft('config', 'config'),
@@ -55,23 +58,31 @@ filetypes.filetype = setmetatable({
     ['debcontrol'] = ft('Debian control', 'debian'),
     ['debcopyright'] = ft('Debian copyright', 'debian'),
     ['debsources'] = ft('Debian sources', 'debian'),
-    ['delphi'] = ft('Delphi', 'pascal'),
+    ['delphi'] = ft('Delphi', 'delphi'),
     ['diff'] = ft('diff', 'diff'),
     ['django'] = ft('Django', 'django'),
+    ['docbk'] = ft('Docbook', 'docbook'),
+    ['docbksgml'] = ft('Docbook SGML', 'docbook'),
+    ['docbkxml'] = ft('Docbook XML', 'docbook'),
     ['dockerfile'] = ft('Docker', 'docker'),
+    ['dogescript'] = ft('Dogescript', 'doge'),
     ['dosbatch'] = ft('batch', 'batch'),
     ['dosini'] = ft('INI', 'config'),
     ['dot'] = ft('DOT', 'graphviz'),
     ['dotnet'] = ft('.NET', 'dotnet'),
     ['dtd'] = ft('DTD', 'xml'),
+    ['dune'] = ft('Dune', 'reason'),
     ['elixir'] = ft('Elixir', 'elixir'),
     ['elm'] = ft('Elm', 'elm'),
+    ['ember-script'] = ft('EmberScript', 'ember'),
     ['erlang'] = ft('Erlang', 'erlang'),
     ['eruby'] = ft('eRuby', 'rails'),
     ['fasm'] = ft('FASM', 'asm'),
     ['fish'] = ft('fish', 'shell'),
-    ['fsharp'] = ft('F#', 'fsharp'),
     ['fontforge_script'] = ft('FontForge', 'fontforge'),
+    ['fortran'] = ft('Fortran', 'fortran'),
+    ['fsharp'] = ft('F#', 'fsharp'),
+    ['gdscript'] = ft('Godot script', 'godot'),
     ['gitattributes'] = ft('git attributes', 'git'),
     ['gitconfig'] = ft('git config', 'git'),
     ['gitignore'] = ft('git ignore', 'git'),
@@ -79,18 +90,21 @@ filetypes.filetype = setmetatable({
     ['go'] = ft('Go', 'golang'),
     ['graphql'] = ft('GraphQL', 'graphql'),
     ['groovy'] = ft('Groovy', 'groovy'),
+    ['gsl'] = ft('Godot shader', 'godot'),
     ['haml'] = ft('Haml', 'haml'),
     ['haskell'] = ft('Haskell', 'haskell'),
     ['haxe'] = ft('Haxe', 'haxe'),
+    ['hcl'] = ft('HCL', 'hcl'),
     ['html'] = ft('HTML', 'html'),
     ['html.mustache'] = ft('Mustache', 'mustache'),
     ['html.twig'] = ft('Twig', 'twig'),
     ['htmldjango'] = ft('Django', 'django'),
     ['httplog'] = ft('log', 'log'),
+    ['idl'] = ft('IDL', 'idl'),
     ['idris'] = ft('Idris', 'idris'),
     ['ipynb'] = ft('Jupyter Notebook', 'ipynb'),
     ['iss'] = ft('Inno Setup', 'inno'),
-    ['jade'] = ft('Pug', 'pug'),
+    ['j'] = ft('J', 'jlang'),
     ['java'] = ft('Java', 'java'),
     ['javascript'] = ft('JavaScript', 'javascript'),
     ['javascript.jsx'] = ft('JSX', 'jsx'),
@@ -100,8 +114,8 @@ filetypes.filetype = setmetatable({
     ['jinja2'] = ft('Jinja', 'jinja'),
     ['jproperties'] = ft('properties', 'config'),
     ['json'] = ft('JSON', 'json'),
-    ['jsonc'] = ft('JSON', 'json'),
     ['json5'] = ft('JSON', 'json'),
+    ['jsonc'] = ft('JSON', 'json'),
     ['jsp'] = ft('JSP', 'java'),
     ['jsx'] = ft('JSX', 'jsx'),
     ['julia'] = ft('Julia', 'julia'),
@@ -114,10 +128,11 @@ filetypes.filetype = setmetatable({
     ['llvm'] = ft('LLVM', 'llvm'),
     ['log'] = ft('log', 'log'),
     ['log4j'] = ft('log', 'log'),
+    ['logtalk'] = ft('Logtalk', 'logtalk'),
     ['lprolog'] = ft('lambda Prolog', 'prolog'),
     ['ls'] = ft('LiveScript', 'livescript'),
     ['lua'] = ft('Lua', 'lua'),
-    ['make'] = ft('Make', 'make'),
+    ['make'] = ft('Make', 'gnu'),
     ['manifest'] = ft('Java manifest', 'manifest'),
     ['markdown'] = ft('Markdown', 'markdown'),
     ['matlab'] = ft('MATLAB', 'matlab'),
@@ -125,9 +140,10 @@ filetypes.filetype = setmetatable({
     ['mesonopt'] = ft('Meson', 'meson'),
     ['messages'] = ft('log', 'log'),
     ['mips'] = ft('MIPS', 'asm'),
+    ['mma'] = ft('Mathematica', 'mathematica'),
     ['mustache'] = ft('Mustache', 'mustache'),
     ['mysql'] = ft('MySQL', 'sql'),
-    ['nasm'] = ft('NASM', 'asm'),
+    ['nasm'] = ft('NASM', 'nasm'),
     ['nginx'] = ft('NGINX', 'nginx'),
     ['nim'] = ft('Nim', 'nim'),
     ['nix'] = ft('Nix', 'nix'),
@@ -136,6 +152,7 @@ filetypes.filetype = setmetatable({
     ['ocaml'] = ft('OCaml', 'ocaml'),
     ['octave'] = ft('Octave', 'octave'),
     ['opencl'] = ft('OpenCL', 'opencl'),
+    ['openvpn'] = ft('OpenVPN', 'openvpn'),
     ['pascal'] = ft('Pascal', 'pascal'),
     ['perl'] = ft('Perl', 'perl'),
     ['pgsql'] = ft('PostgreSQL', 'sql'),
@@ -144,7 +161,7 @@ filetypes.filetype = setmetatable({
     ['plaintex'] = ft('Plain TeX', 'tex'),
     ['plantuml'] = ft('PlantUML', 'graphviz'),
     ['plsql'] = ft('PL/SQL', 'sql'),
-    ['pod'] = ft('Pod', 'perl'),
+    ['pod'] = ft('Pod', 'pod'),
     ['postcss'] = ft('PostCSS', 'postcss'),
     ['postscr'] = ft('PostScript', 'postscript'),
     ['prolog'] = ft('Prolog', 'prolog'),
@@ -158,8 +175,9 @@ filetypes.filetype = setmetatable({
     ['qmake'] = ft('qmake', 'qt5'),
     ['qml'] = ft('QML', 'qt5'),
     ['r'] = ft('R', 'rlang'),
-    ['racket'] = ft('Racket', 'scheme'),
+    ['racket'] = ft('Racket', 'racket'),
     ['raku'] = ft('Raku', 'raku'),
+    ['reason'] = ft('Reason', 'reason'),
     ['redis'] = ft('Redis', 'redis'),
     ['requirements'] = ft('requirements', 'pypi'),
     ['rmd'] = ft('R Markdown', 'rmarkdown'),
@@ -172,7 +190,9 @@ filetypes.filetype = setmetatable({
     ['scheme'] = ft('Scheme', 'scheme'),
     ['scss'] = ft('SCSS', 'sass'),
     ['sed'] = ft('sed', 'shell'),
+    ['sgml'] = ft('SGML', 'xml'),
     ['sh'] = ft('shell', 'shell'),
+    ['smali'] = ft('smali', 'android'),
     ['spec'] = ft('RPM spec', 'redhat'),
     ['sql'] = ft('SQL', 'sql'),
     ['sqloracle'] = ft('Oracle SQL', 'sql'),
@@ -181,7 +201,7 @@ filetypes.filetype = setmetatable({
     ['svg'] = ft('SVG', 'svg'),
     ['swift'] = ft('Swift', 'swift'),
     ['syslog'] = ft('log', 'log'),
-    ['systemverilog'] = ft('SystemVerilog', 'verilog'),
+    ['systemverilog'] = ft('SystemVerilog', 'systemverilog'),
     ['tcl'] = ft('Tcl', 'tcl'),
     ['tex'] = ft('TeX', 'tex'),
     ['text'] = ft('text', 'text'),
@@ -198,6 +218,8 @@ filetypes.filetype = setmetatable({
     ['vhdl'] = ft('VHDL', 'vhdl'),
     ['vim'] = ft('VimL', 'vim'),
     ['vue'] = ft('Vue.js', 'vue'),
+    ['wast'] = ft('WebAssembly', 'wasm'),
+    ['xhtml'] = ft('XHTML', 'xhtml'),
     ['xml'] = ft('XML', 'xml'),
     ['xquery'] = ft('XQuery', 'xml'),
     ['xsd'] = ft('XSD', 'xml'),
@@ -218,17 +240,27 @@ filetypes.pattern = {
     ['^AndroidManifest%.xml$'] = ft('Android manifest', 'android'),
     ['^angular%.json$'] = ft('Angular config', 'angular'),
     ['^%.ansible%.cfg$'] = ft('Ansible config', 'ansible'),
+    ['^app%.ya?ml$'] = ft('App Engine', 'google'),
     ['^%.?appveyor%.ya?ml$'] = ft('AppVeyor', 'appveyor'),
+    ['^[Aa][Uu][Tt][Hh][Oo][Rr][Ss]'] = ft('authors', 'people'),
     ['^%.bowerrc$'] = ft('Bower', 'bower'),
     ['^Gemfile%.lock$'] = ft('Bundler lockfile', 'bundler'),
     ['^Gemfile$'] = ft('Bundler package', 'bundler'),
-    ['^Cargo%.toml$'] = ft('Cargo', 'cargo'),
-    ['^Cargo%.lock$'] = ft('Cargo', 'cargo'),
+    ['^Caddyfile$'] = ft('Caddy', 'caddy'),
+    ['^Cargo%.lock$'] = ft('Cargo lockfile', 'cargo'),
+    ['^Cargo%.toml$'] = ft('Cargo package', 'cargo'),
+    ['^chocolatey.+%.ps1$'] = ft('Chocolatey', 'chocolatey'),
     ['^circle%.ya?ml$'] = ft('CircleCI', 'circleci'),
+    ['^cloud-build%.ya?ml$'] = ft('Cloud Build', 'google'),
+    ['^CODE_OF_CONDUCT%.md$'] = ft('code of conduct', 'collab'),
+    ['^CODE_OF_MERIT%.md$'] = ft('code of merit', 'collab'),
+    ['^[Cc][Oo][Dd][Ee][Oo][Ww][Nn][Ee][Rr][Ss]'] = ft('code owners', 'people'),
     ['^codecov%.ya?ml$'] = ft('Codecov', 'codecov'),
     ['^composer%.json$'] = ft('Composer', 'composer'),
     ['^composer%.lock$'] = ft('Composer', 'composer'),
     ['^conanfile%.txt$'] = ft('Conan', 'conan'),
+    ['^contribute%.json'] = ft('contribute.json', 'collab'),
+    ['^CONTRIBUTING%.md'] = ft('contributor guidelines', 'collab'),
     ['%.desktop$'] = ft('Desktop entry', 'freedesktop'),
     ['docker-compose.*%.ya?ml$'] = ft('Docker Compose', 'docker'),
     ['^%.dockerignore$'] = ft('Docker ignore', 'docker'),
@@ -247,9 +279,13 @@ filetypes.pattern = {
     ['^[Gg]ulpfile'] = ft('gulp', 'gulp'),
     ['^app%.json$'] = ft('Heroku', 'heroku'),
     ['^Procfile$'] = ft('Heroku', 'heroku'),
+    ['^humans%.txt'] = ft('humans.txt', 'people'),
+    ['^_config%.toml$'] = ft('Jekyll config', 'jekyll'),
+    ['^_config%.ya?ml$'] = ft('Jekyll config', 'jekyll'),
     ['^Jenkinsfile$'] = ft('Jenkins', 'jenkins'),
-    ['[Cc][Oo][Pp][Yy][Ii][Nn][Gg]'] = ft('license', 'license'),
-    ['[Ll][Ii][Cc][Ee][Nn][SCsc][Ee]'] = ft('license', 'license'),
+    ['^lerna%.json$'] = ft('Lerna', 'lerna'),
+    ['^[Cc][Oo][Pp][Yy][Ii][Nn][Gg]'] = ft('license', 'license'),
+    ['^[Ll][Ii][Cc][Ee][Nn][SCsc][Ee]'] = ft('license', 'license'),
     ['^pom%.xml$'] = ft('Maven', 'maven'),
     ['.*%.pom$'] = ft('Maven', 'maven'),
     ['^package%.json$'] = ft('Node.js package', 'node'),
@@ -258,16 +294,29 @@ filetypes.pattern = {
     ['^nuget%.config$'] = ft('NuGet config', 'nuget'),
     ['%.nuspec$'] = ft('NuGet manifest', 'nuget'),
     ['^openapi%.json$'] = ft('OpenAPI', 'openapi'),
-    ['^%poetry%.lock$'] = ft('Poetry lockfile', 'pypi'),
-    ['^%pyproject%.toml$'] = ft('Python project', 'pypi'),
+    ['^openapi%.ya?ml$'] = ft('OpenAPI', 'openapi'),
+    ['^Pipfile%.lock$'] = ft('Pipenv lockfile', 'pipenv'),
+    ['^Pipfile$'] = ft('Pipenv package', 'pipenv'),
+    ['^platformio%.ini$'] = ft('PlatformIO', 'platformio'),
+    ['^%.pnpmfile%.cjs$'] = ft('pnpm hooks', 'pnpm'),
+    ['^pnpm-workspace%.ya?ml$'] = ft('pnpm workspace', 'pnpm'),
+    ['^poetry%.lock$'] = ft('Poetry lockfile', 'pypi'),
+    ['^pytest%.ini$'] = ft('pytest config', 'pytest'),
+    ['^pyproject%.toml$'] = ft('Python project', 'pypi'),
     ['^Rakefile$'] = ft('Rake', 'rubygems'),
     ['^.readthedocs%.ya?ml$'] = ft('Read the Docs', 'rtfd'),
-    ['[Rr][Ee][Aa][Dd][Mm][Ee]'] = ft('README', 'readme'),
+    ['^[Rr][Ee][Aa][Dd][Mm][Ee]'] = ft('README', 'readme'),
+    ['^robots%.txt'] = ft('robots.txt', 'robots'),
     ['^rollup.*%.config'] = ft('Rollup', 'rollup'),
+    ['^SECURITY%.md$'] = ft('security policy', 'security'),
+    ['^security%.txt$'] = ft('security.txt', 'security'),
     ['^%setup%.cfg$'] = ft('setuptools config', 'pypi'),
+    ['^spring%.cfg%.xml$'] = ft('Spring config', 'spring'),
     ['^%.SRCINFO$'] = ft('SRCINFO', 'archlinux'),
     ['^svelte%.config%.js$'] = ft('Svelte config', 'svelte'),
-    ['^swagger%.ya?ml$'] = ft('Swagger', 'openapi'),
+    ['^swagger%.ya?ml$'] = ft('Swagger', 'swagger'),
+    ['^swagger%.json$'] = ft('Swagger', 'swagger'),
+    ['%.tmLanguage%$'] = ft('TextMate syntax', 'textmate'),
     ['^%.travis%.ya?ml%$'] = ft('Travis CI', 'travis'),
     ['^Vagrantfile$'] = ft('Vagrant', 'vagrant'),
     ['^manifest%.json$'] = ft('Web App manifest', 'manifest'),
@@ -277,9 +326,18 @@ filetypes.pattern = {
     ['^%yarn%.lock$'] = ft('Yarn lockfile', 'yarn'),
 }
 
+---@class ignore
+filetypes.ignore = setmetatable({}, {
+    ---@param t ignore
+    ---@param type string
+    ---@param name string
+    __call = function(t, type, name)
+        return t.filename[name] or t.filetype[type]
+    end
+})
+
 ---@type table<string, boolean>
-filetypes.ignore = setmetatable({
-    [''] = true,
+filetypes.ignore.filetype = {
     ['fugitive'] = true,
     ['fugitiveblame'] = true,
     ['fzf'] = true,
@@ -303,13 +361,16 @@ filetypes.ignore = setmetatable({
     ['unicode'] = true,
     ['viminfo'] = true,
     ['xxd'] = true,
-}, {
-    ---@param t table
-    ---@param k string
-    __call = function(t, k)
-        t[k] = true
-    end
-})
+    ['zip'] = true,
+}
+
+---@type table<string, boolean>
+filetypes.ignore.filename = {
+    [''] = true,
+    ['[Command Line]'] = true,
+    ['.nvimrc'] = true,
+    ['.exrc'] = true,
+}
 
 ---@param val FT
 ---@return string
@@ -328,6 +389,8 @@ function filetypes:assets()
         vim.tbl_map(_asset, vim.tbl_values(self.filetype)),
         vim.tbl_map(_asset, vim.tbl_values(self.pattern))
     }
+    table.insert(fts, 'neovim')
+    table.insert(fts, 'unknown')
     table.sort(fts)
     return vim.fn.uniq(fts)
 end
@@ -336,8 +399,9 @@ end
 ---@param filename string
 ---@return FT|nil
 function filetypes:get(filetype, filename)
-    if self.ignore[filetype] then return nil end
-    if filename == '[Command Line]' then return nil end
+    if self.ignore(filetype, filename) then
+        return nil
+    end
     for key, val in pairs(self.pattern) do
         if filename:match(key) then return val end
     end

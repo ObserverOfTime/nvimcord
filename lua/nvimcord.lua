@@ -70,7 +70,7 @@ local function start()
             if ok_ then
                 Discord.start = os.time()
                 Discord.timer:start(0, 15e3, function()
-                    vim.defer_fn(update, 0)
+                    vim.schedule(update)
                 end)
             end
         end)
@@ -96,10 +96,8 @@ local function setup(opts)
         group = 'nvimcord',
         desc = 'NvimcordUpdate'
     })
-    vim.api.nvim_create_autocmd('VimLeavePre', {
-        callback = function()
-            Discord.timer:stop()
-        end,
+    vim.api.nvim_create_autocmd('VimLeave', {
+        callback = function() stop() end,
         group = 'nvimcord',
         desc = 'NvimcordStop'
     })

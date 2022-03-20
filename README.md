@@ -1,6 +1,6 @@
 <!-- panvimdoc-ignore-start -->
 
-<img src="https://cdn.discordapp.com/app-icons/954365489214291979/c6b8dba086567486cc331122dc9f234f.png" alt="Logo" align="right" width="128"/>
+<img src=".github/logo.png" alt="Logo" align="right" width="128"/>
 
 <!-- panvimdoc-ignore-end -->
 
@@ -88,10 +88,11 @@ fts.pattern['^%.gitignore$'] = {
     asset = 'git'
 }
 
--- ignore
-fts.ignore('vim')
--- unignore
-fts.ignore['netrw'] = false
+-- ignore filetype
+fts.ignore.filetype['vim'] = true
+
+-- ignore filename
+fts.ignore.filename['init.vim'] = true
 ```
 
 ## Commands
@@ -114,10 +115,11 @@ List the supported assets.
 
 ## TODO
 
-* Ignore by filename
-* Cache filename patterns
-* Detect workspace through git
-* Set idle status after some time
+* [x] Ignore by filename
+* [ ] Cache filename patterns
+* [ ] Detect workspace through git
+* [ ] Warn when pipe doesn't exist
+* [ ] Set idle status after some time
 
 ## Assets
 

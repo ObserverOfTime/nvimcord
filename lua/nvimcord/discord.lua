@@ -62,9 +62,11 @@ setmetatable(Discord, {
 ---@param config Config
 function Discord:init(config)
     self.config = setmetatable({}, {
+        ---@param t Config
         ---@param k string
-        __index = function(_, k)
-            return vim.g['nvimcord#'..k] or config[k]
+        __index = function(t, k)
+            t[k] = vim.g['nvimcord#'..k] or config[k]
+            return t[k]
         end
     })
     self.pid = vim.fn.getpid()
