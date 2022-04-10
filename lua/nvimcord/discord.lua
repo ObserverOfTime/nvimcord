@@ -4,9 +4,6 @@ local IPC = require 'nvimcord.ipc'
 local u = require 'nvimcord.util'
 
 ---@alias OP integer
---- |"OP.AUTHENTICATE"
---- |"OP.FRAME"
---- |"OP.CLOSE"
 
 ---@class Assets
 ---@field large_image string
@@ -51,7 +48,8 @@ local m = {
 ---@field config Config
 ---@field version string
 ---@field timer uv_timer_t
----@field nonce string|"vim.NIL"
+---@field nonce string
+---@field pid integer
 ---@field start number|nil
 ---@field _last Activity|nil
 local Discord = {}
@@ -76,7 +74,7 @@ function Discord:init(config)
     self.version = vim.fn.split(version, '\n')[1]:sub(6)
 end
 
----@param lvl log_level_s
+---@param lvl log_level
 ---@param msg string
 ---@vararg string
 function Discord:log(lvl, msg, ...)
