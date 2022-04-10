@@ -92,6 +92,7 @@ filetypes.filetype = setmetatable({
     ['groovy'] = ft('Groovy', 'groovy'),
     ['gsl'] = ft('Godot shader', 'godot'),
     ['haml'] = ft('Haml', 'haml'),
+    ['handlebars'] = ft('Handlebars', 'mustache'),
     ['haskell'] = ft('Haskell', 'haskell'),
     ['haxe'] = ft('Haxe', 'haxe'),
     ['hcl'] = ft('HCL', 'hcl'),

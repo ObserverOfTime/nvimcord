@@ -1,8 +1,8 @@
 {
   "package": "nvimcord",
-  "version": "0.0.2",
-  "specification_version": "0.1.0",
-  "source": "git+https://github.com/ObserverOfTime/nvimcord.git",
+  "version": "0.0.3",
+  "packspec": "0.1.0",
+  "source": "git://github.com/ObserverOfTime/nvimcord.git",
   "description": {
     "summary": "A Discord Rich Presence plugin for Neovim written in Lua.",
     "homepage": "https://github.com/ObserverOfTime/nvimcord",
@@ -11,7 +11,7 @@
   "dependencies": {
     "neovim": {
       "version": ">= 0.7.0",
-      "source": "git+https://github.com/neovim/neovim.git"
+      "source": "git://github.com/neovim/neovim.git"
     }
   }
 }

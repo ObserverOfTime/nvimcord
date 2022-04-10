@@ -5,7 +5,7 @@ local workspace = require 'nvimcord.workspace'
 ---@class Config
 ---@field autostart? boolean
 ---@field client_id? string
----@field log_level? log_level_n
+---@field log_level? integer
 ---@field workspace_name string|fun(): string
 ---@field workspace_url string|fun(): string
 local config = {
