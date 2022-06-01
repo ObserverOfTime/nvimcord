@@ -184,6 +184,7 @@ filetypes.filetype = setmetatable({
     ['rmd'] = ft('R Markdown', 'rmarkdown'),
     ['rnoweb'] = ft('Rnoweb', 'rmarkdown'),
     ['rst'] = ft('reStructuredText', 'rst'),
+    ['rtf'] = ft('Rich Text Format', 'text'),
     ['ruby'] = ft('Ruby', 'ruby'),
     ['rust'] = ft('Rust', 'rust'),
     ['sass'] = ft('Sass', 'sass'),

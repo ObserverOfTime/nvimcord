@@ -102,16 +102,16 @@ local function setup(opts)
         desc = 'NvimcordStop'
     })
 
-    vim.api.nvim_add_user_command('NvimcordUpdate', function ()
+    vim.api.nvim_create_user_command('NvimcordUpdate', function ()
         if Discord.authenticated then update() else start() end
     end, {})
-    vim.api.nvim_add_user_command('NvimcordStop', function()
+    vim.api.nvim_create_user_command('NvimcordStop', function()
         stop()
     end, {})
-    vim.api.nvim_add_user_command('NvimcordFiletypes', function()
+    vim.api.nvim_create_user_command('NvimcordFiletypes', function()
         print(vim.inspect(fts:list()))
     end, {})
-    vim.api.nvim_add_user_command('NvimcordAssets', function()
+    vim.api.nvim_create_user_command('NvimcordAssets', function()
         print(vim.inspect(fts:assets()))
     end, {})
 end
