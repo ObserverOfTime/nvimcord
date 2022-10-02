@@ -1,4 +1,4 @@
-*nvimcord.txt*            For NVIM v0.7.0           Last change: 2022 March 20
+*nvimcord.txt*           For NVIM v0.7.0          Last change: 2022 October 02
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
@@ -166,7 +166,6 @@ ALTERNATIVES                                           *nvimcord-alternatives*
 - vimsence <https://github.com/vimsence/vimsence> (Python)
 - vimdiscord <https://github.com/vbe0201/vimdiscord> (Python)
 - vimcord <https://github.com/Stoozy/vimcord> (Python)
-- nvimsence.rs <https://github.com/nickofolas/nvimsence.rs> (Rust)
 - vdrpc <https://github.com/pucka906/vdrpc> (C)
 
 
