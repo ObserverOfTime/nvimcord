@@ -7,7 +7,7 @@ function util.uuid()
     local tpl = 'XXXXXXXX-XXXX-4XXX-%xXXX-XXXXXXXXXXXX'
     return tpl:format(math.random(8, 0xb)):gsub('X', function(_)
         return ('%x'):format(math.random(0, 0xf))
-    end)
+    end)[1]
 end
 
 util.struct = {}

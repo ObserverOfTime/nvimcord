@@ -162,5 +162,4 @@ The icons use the basic colours from [file-icons/atom][colours].
 * [vimsence](https://github.com/vimsence/vimsence) (Python)
 * [vimdiscord](https://github.com/vbe0201/vimdiscord) (Python)
 * [vimcord](https://github.com/Stoozy/vimcord) (Python)
-* [nvimsence.rs](https://github.com/nickofolas/nvimsence.rs) (Rust)
 * [vdrpc](https://github.com/pucka906/vdrpc) (C)

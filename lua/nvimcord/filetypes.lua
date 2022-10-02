@@ -25,6 +25,8 @@ filetypes.filetype = setmetatable({
     ['asm'] = ft('assembly', 'asm'),
     ['asp'] = ft('ASP.NET', 'dotnet'),
     ['aspvbs'] = ft('ASP.NET', 'dotnet'),
+    ['ass'] = ft('SubStation Alpha', 'text'),
+    ['astro'] = ft('Astro', 'astro'),
     ['autohotkey'] = ft('AutoHotkey', 'autohotkey'),
     ['automake'] = ft('Automake', 'gnu'),
     ['awk'] = ft('AWK', 'shell'),
@@ -38,6 +40,7 @@ filetypes.filetype = setmetatable({
     ['cabalconfig'] = ft('Cabal', 'cabal'),
     ['cabalproject'] = ft('Cabal', 'cabal'),
     ['cfg'] = ft('config', 'config'),
+    ['chatito'] = ft('Chatito', 'chatito'),
     ['chicken'] = ft('Chicken', 'scheme'),
     ['clojure'] = ft('Clojure', 'clojure'),
     ['cmake'] = ft('CMake', 'cmake'),
@@ -114,6 +117,7 @@ filetypes.filetype = setmetatable({
     ['jinja.html'] = ft('Jinja', 'jinja'),
     ['jinja2'] = ft('Jinja', 'jinja'),
     ['jproperties'] = ft('properties', 'config'),
+    ['jq'] = ft('jq', 'json'),
     ['json'] = ft('JSON', 'json'),
     ['json5'] = ft('JSON', 'json'),
     ['jsonc'] = ft('JSON', 'json'),
@@ -198,7 +202,9 @@ filetypes.filetype = setmetatable({
     ['spec'] = ft('RPM spec', 'redhat'),
     ['sql'] = ft('SQL', 'sql'),
     ['sqloracle'] = ft('Oracle SQL', 'sql'),
+    ['SRCINFO'] = ft('SRCINFO', 'archlinux'),
     ['stylus'] = ft('Stylus', 'stylus'),
+    ['subrip'] = ft('SubRip', 'text'),
     ['svelte'] = ft('Svelte', 'svelte'),
     ['svg'] = ft('SVG', 'svg'),
     ['swift'] = ft('Swift', 'swift'),
@@ -216,6 +222,7 @@ filetypes.filetype = setmetatable({
     ['vala'] = ft('Vala', 'vala'),
     ['vb'] = ft('Visual Basic', 'dotnet'),
     ['vbnet'] = ft('VB.NET', 'dotnet'),
+    ['velocity'] = ft('Velocity', 'velocity'),
     ['verilog'] = ft('Verilog', 'verilog'),
     ['vhdl'] = ft('VHDL', 'vhdl'),
     ['vim'] = ft('VimL', 'vim'),
@@ -340,6 +347,11 @@ filetypes.ignore = setmetatable({}, {
 
 ---@type table<string, boolean>
 filetypes.ignore.filetype = {
+    ['dap-repl'] = true,
+    ['dapui_breakpoints'] = true,
+    ['dapui_scopes'] = true,
+    ['dapui_stacks'] = true,
+    ['dapui_watches'] = true,
     ['fugitive'] = true,
     ['fugitiveblame'] = true,
     ['fzf'] = true,
@@ -349,6 +361,7 @@ filetypes.ignore.filetype = {
     ['mail'] = true,
     ['man'] = true,
     ['netrw'] = true,
+    ['neotest-summary'] = true,
     ['null-ls-info'] = true,
     ['packer'] = true,
     ['qf'] = true,
@@ -358,6 +371,7 @@ filetypes.ignore.filetype = {
     ['shada'] = true,
     ['snippet'] = true,
     ['snippets'] = true,
+    ['toggleterm'] = true,
     ['tsplayground'] = true,
     ['undotree'] = true,
     ['unicode'] = true,
@@ -394,12 +408,12 @@ function filetypes:assets()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)
-    return vim.fn.uniq(fts)
+    return vim.fn.uniq(fts, '', nil)
 end
 
 ---@param filetype string
 ---@param filename string
----@return FT|nil
+---@return FT?
 function filetypes:get(filetype, filename)
     if self.ignore(filetype, filename) then
         return nil

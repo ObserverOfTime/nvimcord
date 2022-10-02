@@ -7,13 +7,13 @@ local u = require 'nvimcord.util'
 
 ---@class Assets
 ---@field large_image string
----@field large_text string|nil
----@field small_image string|nil
----@field small_text string|nil
+---@field large_text string?
+---@field small_image string?
+---@field small_text string?
 
 ---@class Timestamps
 ---@field start number
----@field end number|nil
+---@field end number?
 
 ---@class Button
 ---@field label string
@@ -21,9 +21,9 @@ local u = require 'nvimcord.util'
 
 ---@class Activity
 ---@field details string
----@field state string|nil
----@field timestamps Timestamps|nil
----@field buttons Button[]|nil
+---@field state string?
+---@field timestamps Timestamps?
+---@field buttons Button[]?
 
 local OP = {AUTHENTICATE = 0, FRAME = 1, CLOSE = 2}
 
@@ -41,8 +41,8 @@ local m = {
 }
 
 ---@class uv_timer_t
----@field start fun(timeout: number, repeat: number, callback: fun()): number
----@field stop fun(): number
+---@field start fun(self: uv_timer_t, timeout: number, repeat: number, callback: fun()): number
+---@field stop fun(self: uv_timer_t): number
 
 ---@class Discord
 ---@field config Config
@@ -50,8 +50,8 @@ local m = {
 ---@field timer uv_timer_t
 ---@field nonce string
 ---@field pid integer
----@field start number|nil
----@field _last Activity|nil
+---@field start number?
+---@field _last Activity?
 local Discord = {}
 setmetatable(Discord, {
     __gc = function() Discord:close() end
@@ -75,9 +75,10 @@ function Discord:init(config)
 end
 
 ---@param lvl log_level
----@param msg string
+---@param msg string?
 ---@vararg string
 function Discord:log(lvl, msg, ...)
+    if msg == nil then return end
     u.log(msg:format(...), lvl, self.config.log_level)
 end
 
@@ -139,7 +140,7 @@ function Discord:close()
 end
 
 ---@param op OP
----@param data string
+---@param data table
 ---@param done fun(ok: boolean)
 function Discord:call(op, data, done)
     u.json.encode(data, function(encoded)
