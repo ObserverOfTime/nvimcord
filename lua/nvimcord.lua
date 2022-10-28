@@ -18,16 +18,16 @@ local config = {
 
 local function update()
     local bufnr = vim.api.nvim_get_current_buf()
-    local ft = vim.api.nvim_buf_get_option(bufnr, 'ft')
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    fname = vim.fn.fnamemodify(fname, ':t')
+    local fname = vim.fs.basename(
+        vim.api.nvim_buf_get_name(bufnr)
+    )
 
-    local ftype = fts:get(ft, fname)
+    local ftype = fts:get(vim.bo[bufnr].filetype, fname)
     if ftype == nil or ftype.name == '' then return end
 
-    local ro = vim.api.nvim_buf_get_option(bufnr, 'ro')
-    local ma = vim.api.nvim_buf_get_option(bufnr, 'ma')
-    local action = (ro or not ma) and 'Reading ' or 'Editing '
+    local readonly = vim.bo[bufnr].readonly
+    readonly = readonly or not vim.bo[bufnr].modifiable
+    local action = readonly and 'Reading ' or 'Editing '
 
     local state, buttons = nil, nil
     if Discord.config.workspace_name ~= '' then
@@ -88,7 +88,7 @@ end
 local function setup(opts)
     Discord:init(vim.tbl_deep_extend('force', config, opts or {}))
 
-    vim.api.nvim_create_augroup('nvimcord', {})
+    vim.api.nvim_create_augroup('nvimcord', {clear = true})
     vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
             if Discord.config.autostart then start() end
@@ -109,10 +109,10 @@ local function setup(opts)
         stop()
     end, {})
     vim.api.nvim_create_user_command('NvimcordFiletypes', function()
-        print(vim.inspect(fts:list()))
+        vim.pretty_print(fts:list())
     end, {})
     vim.api.nvim_create_user_command('NvimcordAssets', function()
-        print(vim.inspect(fts:assets()))
+        vim.pretty_print(fts:assets())
     end, {})
 end
 

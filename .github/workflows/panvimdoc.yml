@@ -3,7 +3,9 @@ name: Generate docs
 on:
   push:
     branches: [master]
-    paths: [README.md]
+    paths:
+      - README.md
+      - .github/workflows/panvimdoc.yml
 
 jobs:
   panvimdoc:
@@ -13,7 +15,7 @@ jobs:
       - uses: kdheepak/panvimdoc@v2.7.3
         with:
           vimdoc: nvimcord
-          version: NVIM v0.7.0
+          version: NVIM v0.8.0
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Auto generate docs

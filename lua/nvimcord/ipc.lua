@@ -20,7 +20,7 @@ end
 
 function IPC:connect()
     if not self.pipe or self.pipe:is_closing() then
-        self.pipe = vim.loop.new_pipe(false)
+        self.pipe = assert(vim.loop.new_pipe(false))
     end
 
     assert(self.pipe:connect(self.path))

@@ -48,6 +48,7 @@ filetypes.filetype = setmetatable({
     ['coffee'] = ft('CofeeScript', 'coffeescript'),
     ['conf'] = ft('config', 'config'),
     ['config'] = ft('config', 'config'),
+    ['confini'] = ft('config', 'config'),
     ['cpp'] = ft('C++', 'cpp'),
     ['crystal'] = ft('Crystal', 'crystal'),
     ['cs'] = ft('C#', 'csharp'),
@@ -199,10 +200,12 @@ filetypes.filetype = setmetatable({
     ['sgml'] = ft('SGML', 'xml'),
     ['sh'] = ft('shell', 'shell'),
     ['smali'] = ft('smali', 'android'),
+    ['solidity'] = ft('Solidity', 'solidity'),
     ['spec'] = ft('RPM spec', 'redhat'),
     ['sql'] = ft('SQL', 'sql'),
     ['sqloracle'] = ft('Oracle SQL', 'sql'),
     ['SRCINFO'] = ft('SRCINFO', 'archlinux'),
+    ['ssa'] = ft('SubStation Alpha', 'text'),
     ['stylus'] = ft('Stylus', 'stylus'),
     ['subrip'] = ft('SubRip', 'text'),
     ['svelte'] = ft('Svelte', 'svelte'),
@@ -352,11 +355,13 @@ filetypes.ignore.filetype = {
     ['dapui_scopes'] = true,
     ['dapui_stacks'] = true,
     ['dapui_watches'] = true,
+    ['diff'] = true,
     ['fugitive'] = true,
     ['fugitiveblame'] = true,
     ['fzf'] = true,
     ['gitcommit'] = true,
     ['gitrebase'] = true,
+    ['gitsendemail'] = true,
     ['help'] = true,
     ['mail'] = true,
     ['man'] = true,
@@ -408,7 +413,7 @@ function filetypes:assets()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)
-    return vim.fn.uniq(fts, '', nil)
+    return vim.fn.uniq(fts)
 end
 
 ---@param filetype string
