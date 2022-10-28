@@ -1,4 +1,4 @@
-*nvimcord.txt*           For NVIM v0.7.0          Last change: 2022 October 02
+*nvimcord.txt*           For NVIM v0.8.0          Last change: 2022 October 28
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
