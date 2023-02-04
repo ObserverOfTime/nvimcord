@@ -1,13 +1,12 @@
----@class uv_pipe_t
----@field is_closing fun(self: uv_pipe_t): boolean
----@field connect fun(self: uv_pipe_t, name: string): userdata
----@field shutdown fun(self: uv_pipe_t): userdata
----@field write fun(self: uv_pipe_t, data: string|buffer, callback: fun(err: string?)): userdata
----@field read_start fun(self: uv_pipe_t, callback: fun(err: string?, data: string?))
----@field close fun(self: uv_pipe_t)
+---@class vim.loop.Pipe
+--- TODO: remove these when supported
+---@field connect fun(self: vim.loop.Pipe, name: string): userdata
+---@field shutdown fun(self: vim.loop.Pipe): userdata
+---@field write fun(self: vim.loop.Pipe, data: string|buffer, callback: fun(err: string?)): userdata
+---@field read_start fun(self: vim.loop.Pipe, callback: fun(err: string?, data: string?))
 
 ---@class IPC
----@field pipe uv_pipe_t
+---@field pipe vim.loop.Pipe
 local IPC = {}
 
 if vim.fn.has('win32') == 0 then

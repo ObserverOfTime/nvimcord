@@ -1,21 +1,21 @@
----@class util
-local util = {}
+local M = {}
 
 ---@return string
-function util.uuid()
+function M.uuid()
     math.randomseed(os.clock() * 1e3)
     local tpl = 'XXXXXXXX-XXXX-4XXX-%xXXX-XXXXXXXXXXXX'
-    return tpl:format(math.random(8, 0xb)):gsub('X', function(_)
-        return ('%x'):format(math.random(0, 0xf))
-    end)[1]
+    ---@diagnostic disable-next-line: redundant-return-value
+    return tpl:format(math.random(0x8, 0xb)):gsub('X', function(_)
+        return ('%x'):format(math.random(0x0, 0xf))
+    end)
 end
 
-util.struct = {}
+M.struct = {}
 
 ---@param op integer
 ---@param body string
 ---@return string
-function util.struct.pack(op, body)
+function M.struct.pack(op, body)
     local bytes = {}
     local len = #body
     for _ = 1, 4 do
@@ -35,7 +35,7 @@ end
 
 ---@param body string
 ---@return Struct
-function util.struct.unpack(body)
+function M.struct.unpack(body)
     local byte
     local op = 0
     local iter = 1
@@ -47,11 +47,11 @@ function util.struct.unpack(body)
     return {op = op, body = body:sub(iter + 4)}
 end
 
-util.json = {}
+M.json = {}
 
 ---@param data table
 ---@param done fun(...)
-function util.json.encode(data, done)
+function M.json.encode(data, done)
     vim.schedule(function()
         done(vim.fn.json_encode(data))
     end)
@@ -59,13 +59,13 @@ end
 
 ---@param body string
 ---@param done fun(...)
-function util.json.decode(body, done)
+function M.json.decode(body, done)
     vim.schedule(function()
         done(vim.fn.json_decode(body))
     end)
 end
 
----@alias log_level string
+---@alias log_level
 --- |'DEBUG'
 --- |'ERROR'
 --- |'INFO'
@@ -75,18 +75,18 @@ end
 ---@param msg string
 ---@param lvl log_level
 ---@param min integer
-function util.log(msg, lvl, min)
-    lvl = vim.log.levels[lvl]
-    if min <= lvl then
+function M.log(msg, lvl, min)
+    local level = vim.log.levels[lvl]
+    if min <= level then
         if not package.loaded.notify then
             msg = '[nvimcord] '..msg
         end
         vim.schedule(function()
-            vim.notify(msg, lvl, {
+            vim.notify(msg, level, {
                 title = 'nvimcord', icon = 'ﭮ'
             })
         end)
     end
 end
 
-return util
+return M

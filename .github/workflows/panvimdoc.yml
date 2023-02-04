@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: kdheepak/panvimdoc@v2.7.3
+      - uses: kdheepak/panvimdoc@main
         with:
           vimdoc: nvimcord
           version: NVIM v0.8.0
+          treesitter: true
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Auto generate docs

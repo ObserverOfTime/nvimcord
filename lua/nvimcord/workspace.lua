@@ -1,14 +1,13 @@
----@class Workspace
-local workspace = {}
+local M = {}
 
 ---@return string
-function workspace.get_url()
+function M.get_url()
     return ''
 end
 
 ---@return string
-function workspace.get_name()
+function M.get_name()
     return vim.fn.fnamemodify(vim.loop.cwd(), ':t')
 end
 
-return workspace
+return M

@@ -1,9 +1,8 @@
+local M = {}
+
 ---@class FT
 ---@field name string
 ---@field asset string
-
----@class filetypes
-local filetypes = {}
 
 ---@param name string
 ---@param asset string
@@ -13,7 +12,7 @@ local function ft(name, asset)
 end
 
 ---@type table<string, FT>
-filetypes.filetype = setmetatable({
+M.filetype = setmetatable({
     ['actionscript'] = ft('ActionScript', 'actionscript'),
     ['ada'] = ft('Ada', 'ada'),
     ['ant'] = ft('Ant', 'ant'),
@@ -76,6 +75,7 @@ filetypes.filetype = setmetatable({
     ['dotnet'] = ft('.NET', 'dotnet'),
     ['dtd'] = ft('DTD', 'xml'),
     ['dune'] = ft('Dune', 'reason'),
+    ['editorconfig'] = ft('EditorConfig', 'editorconfig'),
     ['elixir'] = ft('Elixir', 'elixir'),
     ['elm'] = ft('Elm', 'elm'),
     ['ember-script'] = ft('EmberScript', 'ember'),
@@ -248,7 +248,7 @@ filetypes.filetype = setmetatable({
 })
 
 ---@type table<string, FT>
-filetypes.pattern = {
+M.pattern = {
     ['^AndroidManifest%.xml$'] = ft('Android manifest', 'android'),
     ['^angular%.json$'] = ft('Angular config', 'angular'),
     ['^%.ansible%.cfg$'] = ft('Ansible config', 'ansible'),
@@ -277,7 +277,6 @@ filetypes.pattern = {
     ['docker-compose.*%.ya?ml$'] = ft('Docker Compose', 'docker'),
     ['^%.dockerignore$'] = ft('Docker ignore', 'docker'),
     ['^[Dd]oxyfile$'] = ft('Doxygen', 'doxygen'),
-    ['^%.editorconfig$'] = ft('EditorConfig', 'editorconfig'),
     ['^firebase%.json$'] = ft('Firebase', 'firebase'),
     ['^firestore%.rules$'] = ft('Firestore', 'firebase'),
     ['%.gemspec$'] = ft('Gem spec', 'rubygems'),
@@ -339,7 +338,7 @@ filetypes.pattern = {
 }
 
 ---@class ignore
-filetypes.ignore = setmetatable({}, {
+M.ignore = setmetatable({}, {
     ---@param t ignore
     ---@param type string
     ---@param name string
@@ -349,7 +348,8 @@ filetypes.ignore = setmetatable({}, {
 })
 
 ---@type table<string, boolean>
-filetypes.ignore.filetype = {
+M.ignore.filetype = {
+    ['checkhealth'] = true,
     ['dap-repl'] = true,
     ['dapui_breakpoints'] = true,
     ['dapui_scopes'] = true,
@@ -386,7 +386,7 @@ filetypes.ignore.filetype = {
 }
 
 ---@type table<string, boolean>
-filetypes.ignore.filename = {
+M.ignore.filename = {
     [''] = true,
     ['[Command Line]'] = true,
     ['.nvimrc'] = true,
@@ -395,20 +395,20 @@ filetypes.ignore.filename = {
 
 ---@param val FT
 ---@return string
-local function _asset(val)
+local function asset(val)
     return val.asset
 end
 
 ---@return string[]
-function filetypes:list()
-    return vim.tbl_keys(self.filetype)
+function M.list()
+    return vim.tbl_keys(M.filetype)
 end
 
 ---@return string[]
-function filetypes:assets()
+function M.assets()
     local fts = vim.tbl_flatten {
-        vim.tbl_map(_asset, vim.tbl_values(self.filetype)),
-        vim.tbl_map(_asset, vim.tbl_values(self.pattern))
+        vim.tbl_map(asset, vim.tbl_values(M.filetype)),
+        vim.tbl_map(asset, vim.tbl_values(M.pattern))
     }
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
@@ -419,14 +419,14 @@ end
 ---@param filetype string
 ---@param filename string
 ---@return FT?
-function filetypes:get(filetype, filename)
-    if self.ignore(filetype, filename) then
+function M.get(filetype, filename)
+    if M.ignore(filetype, filename) then
         return nil
     end
-    for key, val in pairs(self.pattern) do
+    for key, val in pairs(M.pattern) do
         if filename:match(key) then return val end
     end
-    return self.filetype[filetype]
+    return M.filetype[filetype]
 end
 
-return filetypes
+return M

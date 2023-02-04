@@ -77,16 +77,10 @@ fts.filetype['vim'].name = 'Vim Script'
 fts.filetype['vim'].asset = 'neovim'
 
 -- new filetype
-fts.filetype['teal'] = {
-    name = 'Teal',
-    asset = 'lua'
-}
+fts.filetype['teal'] = {name = 'Teal', asset = 'lua'}
 
 -- new pattern
-fts.pattern['^%.gitignore$'] = {
-    name = 'git ignore',
-    asset = 'git'
-}
+fts.pattern['^%.gitkeep$'] = {name = 'git keep', asset = 'git'}
 
 -- ignore filetype
 fts.ignore.filetype['vim'] = true
@@ -159,7 +153,7 @@ The icons use the basic colours from [file-icons/atom][colours].
 * [presence.nvim](https://github.com/andweeb/presence.nvim) (Lua)
 * [discord.nvim](https://github.com/aurieh/discord.nvim) (Python)
   * [or my own fork](https://github.com/ObserverOfTime/discord.nvim)
-* [vimsence](https://github.com/vimsence/vimsence) (Python)
+* [vimsence](https://github.com/hugolgst/vimsence) (Python)
 * [vimdiscord](https://github.com/vbe0201/vimdiscord) (Python)
 * [vimcord](https://github.com/Stoozy/vimcord) (Python)
-* [vdrpc](https://github.com/pucka906/vdrpc) (C)
+* [vdrpc](https://github.com/goopey7/vdrpc) (C)

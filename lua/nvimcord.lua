@@ -6,8 +6,8 @@ local workspace = require 'nvimcord.workspace'
 ---@field autostart? boolean
 ---@field client_id? string
 ---@field log_level? integer
----@field workspace_name string|fun(): string
----@field workspace_url string|fun(): string
+---@field workspace_name nil|string|fun(): string
+---@field workspace_url nil|string|fun(): string
 local config = {
     autostart = false,
     client_id = '954365489214291979',
@@ -22,7 +22,7 @@ local function update()
         vim.api.nvim_buf_get_name(bufnr)
     )
 
-    local ftype = fts:get(vim.bo[bufnr].filetype, fname)
+    local ftype = fts.get(vim.bo[bufnr].filetype, fname)
     if ftype == nil or ftype.name == '' then return end
 
     local readonly = vim.bo[bufnr].readonly
@@ -86,7 +86,15 @@ end
 
 ---@param opts? Config
 local function setup(opts)
-    Discord:init(vim.tbl_deep_extend('force', config, opts or {}))
+    opts = opts or {}
+    vim.validate {
+        autostart = {opts.autostart, 'b', true},
+        client_id = {opts.client_id, 's', true},
+        log_level = {opts.log_level, 'n', true},
+        workspace_name = {opts.workspace_name, {'s', 'f'}, true},
+        workspace_url = {opts.workspace_url, {'s', 'f'}, true}
+    }
+    Discord:init(vim.tbl_deep_extend('force', config, opts))
 
     vim.api.nvim_create_augroup('nvimcord', {clear = true})
     vim.api.nvim_create_autocmd('VimEnter', {
@@ -109,10 +117,10 @@ local function setup(opts)
         stop()
     end, {})
     vim.api.nvim_create_user_command('NvimcordFiletypes', function()
-        vim.pretty_print(fts:list())
+        vim.pretty_print(fts.list())
     end, {})
     vim.api.nvim_create_user_command('NvimcordAssets', function()
-        vim.pretty_print(fts:assets())
+        vim.pretty_print(fts.assets())
     end, {})
 end
 

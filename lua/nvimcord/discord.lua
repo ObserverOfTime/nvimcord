@@ -1,9 +1,5 @@
----@type IPC
 local IPC = require 'nvimcord.ipc'
----@type util
 local u = require 'nvimcord.util'
-
----@alias OP integer
 
 ---@class Assets
 ---@field large_image string
@@ -24,7 +20,9 @@ local u = require 'nvimcord.util'
 ---@field state string?
 ---@field timestamps Timestamps?
 ---@field buttons Button[]?
+---@field assets Assets
 
+---@enum OP
 local OP = {AUTHENTICATE = 0, FRAME = 1, CLOSE = 2}
 
 local m = {
@@ -40,14 +38,10 @@ local m = {
     nonce_err = 'Unexpected nonce: %s (expected %s)',
 }
 
----@class uv_timer_t
----@field start fun(self: uv_timer_t, timeout: number, repeat: number, callback: fun()): number
----@field stop fun(self: uv_timer_t): number
-
 ---@class Discord
 ---@field config Config
 ---@field version string
----@field timer uv_timer_t
+---@field timer vim.loop.Timer
 ---@field nonce string
 ---@field pid integer
 ---@field start number?
@@ -67,9 +61,9 @@ function Discord:init(config)
             return t[k]
         end
     })
-    self.pid = vim.fn.getpid()
     self.authenticated = false
     self.timer = vim.loop.new_timer()
+    self.pid = assert(vim.loop.os_getpid())
     local version = vim.fn.execute('version')
     self.version = vim.fn.split(version, '\n')[1]:sub(6)
 end
