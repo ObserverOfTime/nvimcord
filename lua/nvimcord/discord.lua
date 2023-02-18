@@ -41,7 +41,7 @@ local m = {
 ---@class Discord
 ---@field config Config
 ---@field version string
----@field timer vim.loop.Timer
+---@field timer uv.uv_timer_t
 ---@field nonce string
 ---@field pid integer
 ---@field start number?
@@ -62,8 +62,8 @@ function Discord:init(config)
         end
     })
     self.authenticated = false
-    self.timer = vim.loop.new_timer()
     self.pid = assert(vim.loop.os_getpid())
+    self.timer = assert(vim.loop.new_timer())
     local version = vim.fn.execute('version')
     self.version = vim.fn.split(version, '\n')[1]:sub(6)
 end

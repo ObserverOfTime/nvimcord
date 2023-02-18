@@ -1,12 +1,5 @@
----@class vim.loop.Pipe
---- TODO: remove these when supported
----@field connect fun(self: vim.loop.Pipe, name: string): userdata
----@field shutdown fun(self: vim.loop.Pipe): userdata
----@field write fun(self: vim.loop.Pipe, data: string|buffer, callback: fun(err: string?)): userdata
----@field read_start fun(self: vim.loop.Pipe, callback: fun(err: string?, data: string?))
-
 ---@class IPC
----@field pipe vim.loop.Pipe
+---@field pipe uv.uv_pipe_t
 local IPC = {}
 
 if vim.fn.has('win32') == 0 then
@@ -39,7 +32,7 @@ function IPC:read(callback)
     end)
 end
 
----@param body string|buffer
+---@param body string|uv.buffer
 ---@param done fun(err: string?)
 function IPC:write(body, done)
     self.pipe:write(body, done)
