@@ -112,7 +112,7 @@ List the supported assets.
 * [x] Ignore by filename
 * [ ] Cache filename patterns
 * [ ] Detect workspace through git
-* [ ] Warn when pipe doesn't exist
+* [x] Warn when pipe doesn't exist
 * [ ] Set idle status after some time
 
 ## Assets

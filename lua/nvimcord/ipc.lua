@@ -1,5 +1,5 @@
 ---@class IPC
----@field pipe uv.uv_pipe_t
+---@field pipe uv_pipe_t
 local IPC = {}
 
 if vim.fn.has('win32') == 0 then
@@ -10,12 +10,15 @@ else
     IPC.path = [[\\?\pipe\discord-ipc-0]]
 end
 
+---@return boolean
 function IPC:connect()
     if not self.pipe or self.pipe:is_closing() then
         self.pipe = assert(vim.loop.new_pipe(false))
     end
 
-    assert(self.pipe:connect(self.path))
+    self.pipe:connect(self.path)
+
+    return self.pipe:is_writable()
 end
 
 function IPC:shutdown()
@@ -32,7 +35,7 @@ function IPC:read(callback)
     end)
 end
 
----@param body string|uv.buffer
+---@param body string|string[]
 ---@param done fun(err: string?)
 function IPC:write(body, done)
     self.pipe:write(body, done)

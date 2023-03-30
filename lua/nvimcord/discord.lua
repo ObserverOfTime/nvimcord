@@ -29,6 +29,7 @@ local m = {
     disconnected = 'Disconnected',
     closed_pipe = 'The pipe was closed',
     connecting = 'Connecting to pipe: %s',
+    connect_err = 'Failed to connect to pipe: %s',
     read_err = 'Failed to read from pipe: %s',
     write_err = 'Failed to write to pipe: %s',
     read_ok = 'Read payload from pipe: %s',
@@ -41,7 +42,7 @@ local m = {
 ---@class Discord
 ---@field config Config
 ---@field version string
----@field timer uv.uv_timer_t
+---@field timer uv_timer_t
 ---@field nonce string
 ---@field pid integer
 ---@field start number?
@@ -78,12 +79,12 @@ end
 
 ---@param done fun(ok: boolean)
 function Discord:connect(done)
-    self:log('INFO', m.connecting, IPC.path)
-    local ok, err = pcall(function()
-        return IPC:connect()
-    end)
-    if not ok then
-        self:log('ERROR', err)
+    local ok = IPC:connect()
+    if ok then
+        self:log('INFO', m.connecting, IPC.path)
+    else
+        IPC.pipe = nil
+        self:log('WARN', m.connect_err, IPC.path)
     end
     done(ok)
 end
