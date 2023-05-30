@@ -1,6 +1,6 @@
 {
   "package": "nvimcord",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "packspec": "0.1.0",
   "source": "git://github.com/ObserverOfTime/nvimcord.git",
   "description": {
@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "neovim": {
-      "version": ">= 0.7.0",
-      "source": "git://github.com/neovim/neovim.git"
+      "version": ">= 0.8.0",
+      "source": "git+https://github.com/neovim/neovim.git"
     }
   }
 }

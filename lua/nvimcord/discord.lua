@@ -58,7 +58,11 @@ function Discord:init(config)
         ---@param t Config
         ---@param k string
         __index = function(t, k)
-            t[k] = vim.g['nvimcord#'..k] or config[k]
+            if vim.fn.exists('g:nvimcord#'..k) == 0 then
+                t[k] = config[k]
+            else
+                t[k] = vim.g['nvimcord#'..k]
+            end
             return t[k]
         end
     })

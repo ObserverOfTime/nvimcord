@@ -5,12 +5,14 @@ local workspace = require 'nvimcord.workspace'
 ---@class Config
 ---@field autostart? boolean
 ---@field client_id? string
+---@field large_file_icon? boolean
 ---@field log_level? integer
 ---@field workspace_name nil|string|fun(): string
 ---@field workspace_url nil|string|fun(): string
 local config = {
     autostart = false,
     client_id = '954365489214291979',
+    large_file_icon = true,
     log_level = vim.log.levels.INFO,
     workspace_name = workspace.get_name,
     workspace_url = workspace.get_url,
@@ -39,6 +41,18 @@ local function update()
             url = Discord.config.workspace_url
         }}
     end
+    local assets = {}
+    if Discord.config.large_file_icon then
+        assets.large_image = ftype.asset
+        assets.large_text = ftype.name
+        assets.small_image = 'neovim'
+        assets.small_text = Discord.version
+    else
+        assets.small_image = ftype.asset
+        assets.small_text = ftype.name
+        assets.large_image = 'neovim'
+        assets.large_text = Discord.version
+    end
 
     Discord:set_activity {
         details = action..fname,
@@ -47,12 +61,7 @@ local function update()
             start = Discord.start,
         },
         buttons = buttons,
-        assets = {
-            large_image = ftype.asset,
-            large_text = ftype.name,
-            small_image = 'neovim',
-            small_text = Discord.version
-        }
+        assets = assets
     }
 end
 
@@ -90,6 +99,7 @@ local function setup(opts)
     vim.validate {
         autostart = {opts.autostart, 'b', true},
         client_id = {opts.client_id, 's', true},
+        large_file_icon = {opts.large_file_icon, 'b', true},
         log_level = {opts.log_level, 'n', true},
         workspace_name = {opts.workspace_name, {'s', 'f'}, true},
         workspace_url = {opts.workspace_url, {'s', 'f'}, true}

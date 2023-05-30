@@ -37,6 +37,8 @@ require('nvimcord').setup {
     autostart = false,
     -- Set the client ID (string)
     client_id = '954365489214291979',
+    -- Use the filetype as the large icon (boolean)
+    large_file_icon = true,
     -- Set the log level (enum)
     log_level = vim.log.levels.INFO,
     -- Get the workspace name (function|string)
@@ -57,6 +59,7 @@ This can be useful when using [exrc] or a project plugin.
 ```vim
 let g:nvimcord#autostart = v:false
 let g:nvimcord#client_id = '954365489214291979'
+let g:nvimcord#large_file_icon = v:true
 let g:nvimcord#log_level = 2
 " NOTE: these can only be defined as strings
 let g:nvimcord#workspace_name = ''
