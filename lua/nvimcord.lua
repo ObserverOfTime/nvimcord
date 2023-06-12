@@ -95,6 +95,12 @@ end
 
 ---@param opts? Config
 local function setup(opts)
+    if vim.version().minor < 9 then
+        local log = require('nvimcord.util').log
+        log('nvim v0.9 is required', 'ERROR', 0)
+        return
+    end
+
     opts = opts or {}
     vim.validate {
         autostart = {opts.autostart, 'b', true},
@@ -112,26 +118,26 @@ local function setup(opts)
             if Discord.config.autostart then start() end
         end,
         group = 'nvimcord',
-        desc = 'NvimcordUpdate'
+        desc = 'Start nvimcord'
     })
     vim.api.nvim_create_autocmd('VimLeave', {
         callback = function() stop() end,
         group = 'nvimcord',
-        desc = 'NvimcordStop'
+        desc = 'Stop nvimcord'
     })
 
     vim.api.nvim_create_user_command('NvimcordUpdate', function ()
         if Discord.authenticated then update() else start() end
-    end, {})
+    end, {desc = 'Update rich presence'})
     vim.api.nvim_create_user_command('NvimcordStop', function()
         stop()
-    end, {})
+    end, {desc = 'Stop rich presence'})
     vim.api.nvim_create_user_command('NvimcordFiletypes', function()
-        vim.pretty_print(fts.list())
-    end, {})
+        vim.print(fts.list())
+    end, {desc = 'List supported filetypes'})
     vim.api.nvim_create_user_command('NvimcordAssets', function()
-        vim.pretty_print(fts.assets())
-    end, {})
+        vim.print(fts.assets())
+    end, {desc = 'List available assets'})
 end
 
 return {setup = setup}

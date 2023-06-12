@@ -7,7 +7,7 @@ end
 
 ---@return string
 function M.get_name()
-    return vim.fn.fnamemodify(vim.loop.cwd(), ':t')
+    return vim.fs.basename(vim.loop.cwd() or '')
 end
 
 return M
