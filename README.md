@@ -59,6 +59,7 @@ This can be useful when using [exrc] or a project plugin.
 ```vim
 let g:nvimcord#autostart = v:false
 let g:nvimcord#client_id = '954365489214291979'
+let g:nvimcord#dynamic_workspace = v:true
 let g:nvimcord#large_file_icon = v:true
 let g:nvimcord#log_level = 2
 " NOTE: these can only be defined as strings
