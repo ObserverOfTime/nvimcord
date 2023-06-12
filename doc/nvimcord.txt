@@ -1,4 +1,4 @@
-*nvimcord.txt*             For NVIM v0.8.0            Last change: 2023 May 30
+*nvimcord.txt*            For NVIM v0.9.0            Last change: 2023 June 12
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
@@ -108,28 +108,27 @@ FILETYPES ~
 COMMANDS                                          *nvimcord-nvimcord-commands*
 
 
-                                                    *nvimcord-:NvimcordUpdate*
+:NVIMCORDUPDATE
 
 Start or update the rich presence.
 
 
-                                                      *nvimcord-:NvimcordStop*
+:NVIMCORDSTOP
 
 Stop the rich presence.
 
 
-                                                 *nvimcord-:NvimcordFiletypes*
+:NVIMCORDFILETYPES
 
 List the supported filetypes.
 
 
-                                                    *nvimcord-:NvimcordAssets*
+:NVIMCORDASSETS
 
 List the supported assets.
 
 
 TODO                                                  *nvimcord-nvimcord-todo*
-
 
 - ☒ Ignore by filename
 - ☐ Cache filename patterns
@@ -145,7 +144,6 @@ The assets are available here <https://cloud.disroot.org/s/3HCpppopkrcR6iK>.
 
 SOURCES ~
 
-
 - file-icons/icons <https://github.com/file-icons/icons>
 - file-icons/DevOpicons <https://github.com/file-icons/DevOpicons>
 - file-icons/MFixx <https://github.com/file-icons/MFixx>
@@ -159,7 +157,6 @@ The icons use the basic colours from file-icons/atom
 
 
 ALTERNATIVES                                  *nvimcord-nvimcord-alternatives*
-
 
 - presence.nvim <https://github.com/andweeb/presence.nvim> (Lua)
 - discord.nvim <https://github.com/aurieh/discord.nvim> (Python)
