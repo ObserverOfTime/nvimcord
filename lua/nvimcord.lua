@@ -5,6 +5,7 @@ local workspace = require 'nvimcord.workspace'
 ---@class Config
 ---@field autostart? boolean
 ---@field client_id? string
+---@field dynamic_workspace? boolean
 ---@field large_file_icon? boolean
 ---@field log_level? integer
 ---@field workspace_name nil|string|fun(): string
@@ -12,11 +13,17 @@ local workspace = require 'nvimcord.workspace'
 local config = {
     autostart = false,
     client_id = '954365489214291979',
+    dynamic_workspace = false,
     large_file_icon = true,
     log_level = vim.log.levels.INFO,
     workspace_name = workspace.get_name,
     workspace_url = workspace.get_url,
 }
+
+---@type nil|fun(): string
+local _ws_name_fun
+---@type nil|fun(): string
+local _ws_url_fun
 
 local function update()
     local bufnr = vim.api.nvim_get_current_buf()
@@ -69,9 +76,13 @@ end
 
 local function start()
     if type(Discord.config.workspace_name) == 'function' then
+        ---@diagnostic disable-next-line: cast-local-type
+        _ws_name_fun = Discord.config.workspace_name
         Discord.config.workspace_name = Discord.config.workspace_name()
     end
     if type(Discord.config.workspace_url) == 'function' then
+        ---@diagnostic disable-next-line: cast-local-type
+        _ws_url_fun = Discord.config.workspace_url
         Discord.config.workspace_url = Discord.config.workspace_url()
     end
 
@@ -107,6 +118,7 @@ local function setup(opts)
     vim.validate {
         autostart = {opts.autostart, 'b', true},
         client_id = {opts.client_id, 's', true},
+        dynamic_workspace = {opts.dynamic_workspace, 'b', true},
         large_file_icon = {opts.large_file_icon, 'b', true},
         log_level = {opts.log_level, 'n', true},
         workspace_name = {opts.workspace_name, {'s', 'f'}, true},
@@ -127,6 +139,23 @@ local function setup(opts)
         group = 'nvimcord',
         desc = 'Stop nvimcord'
     })
+
+    if Discord.config.dynamic_workspace then
+        vim.api.nvim_create_autocmd('DirChanged', {
+            callback = function(event)
+                if _ws_name_fun then
+                    Discord.config.workspace_name = _ws_name_fun()
+                else
+                    Discord.config.workspace_name = vim.fs.basename(event.file)
+                end
+                if _ws_url_fun then
+                    Discord.config.workspace_url = _ws_url_fun()
+                end
+            end,
+            group = 'nvimcord',
+            desc = 'Update nvimcord workspace'
+        })
+    end
 
     vim.api.nvim_create_user_command('NvimcordUpdate', function ()
         if Discord.authenticated then update() else start() end
