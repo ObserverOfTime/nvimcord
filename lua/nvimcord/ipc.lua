@@ -7,7 +7,7 @@ if vim.fn.has('win32') == 0 then
         vim.env.XDG_RUNTIME_DIR or vim.loop.os_tmpdir()
     )
 else
-    IPC.path = [[\\?\pipe\discord-ipc-0]]
+    IPC.path = [[\\.\pipe\discord-ipc-0]]
 end
 
 ---@return boolean

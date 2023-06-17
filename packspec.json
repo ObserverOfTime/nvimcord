@@ -1,6 +1,6 @@
 {
   "package": "nvimcord",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packspec": "0.1.0",
   "source": "git+ssh://github.com/ObserverOfTime/nvimcord.git",
   "description": {
