@@ -13,12 +13,12 @@ end
 ---@return boolean
 function IPC:connect()
     if not self.pipe or self.pipe:is_closing() then
-        self.pipe = assert(vim.loop.new_pipe(false))
+        self.pipe = assert(vim.loop.new_pipe())
     end
 
     self.pipe:connect(self.path)
 
-    return self.pipe:is_writable()
+    return vim.fn.has('win32') or self.pipe:is_writable()
 end
 
 function IPC:shutdown()
