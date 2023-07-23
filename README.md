@@ -43,11 +43,11 @@ require('nvimcord').setup {
     log_level = vim.log.levels.INFO,
     -- Get the workspace name (function|string)
     workspace_name = function()
-      return --[[cwd basename]]
+      return --[[git root or cwd basename]]
     end,
     -- Get the workspace URL (function|string)
     workspace_url = function()
-      return ''
+      return --[[git remote URL]]
     end
 }
 ```
@@ -114,7 +114,7 @@ List the supported assets.
 
 * [x] Ignore by filename
 * [ ] Cache filename patterns
-* [ ] Detect workspace through git
+* [x] Detect workspace through git
 * [x] Warn when pipe doesn't exist
 * [ ] Set idle status after some time
 
