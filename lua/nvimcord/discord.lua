@@ -1,27 +1,6 @@
 local IPC = require 'nvimcord.ipc'
 local u = require 'nvimcord.util'
 
----@class Assets
----@field large_image string
----@field large_text string?
----@field small_image string?
----@field small_text string?
-
----@class Timestamps
----@field start number
----@field end number?
-
----@class Button
----@field label string
----@field url string
-
----@class Activity
----@field details string
----@field state string?
----@field timestamps Timestamps?
----@field buttons Button[]?
----@field assets Assets
-
 ---@enum OP
 local OP = {AUTHENTICATE = 0, FRAME = 1, CLOSE = 2}
 
@@ -39,14 +18,7 @@ local m = {
     nonce_err = 'Unexpected nonce: %s (expected %s)',
 }
 
----@class Discord
----@field config Config
----@field version string
----@field timer uv_timer_t
----@field nonce string
----@field pid integer
----@field start number?
----@field _last Activity?
+---@type Discord
 local Discord = {}
 setmetatable(Discord, {
     __gc = function() Discord:close() end

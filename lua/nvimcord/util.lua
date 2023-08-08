@@ -29,10 +29,6 @@ function M.struct.pack(op, body)
     return table.concat(bytes, '')..body
 end
 
----@class Struct
----@field op integer
----@field body string
-
 ---@param body string
 ---@return Struct
 function M.struct.unpack(body)
@@ -64,13 +60,6 @@ function M.json.decode(body, done)
         done(vim.fn.json_decode(body))
     end)
 end
-
----@alias log_level
---- |'DEBUG'
---- |'ERROR'
---- |'INFO'
---- |'TRACE'
---- |'WARN'
 
 ---@param msg string
 ---@param lvl log_level

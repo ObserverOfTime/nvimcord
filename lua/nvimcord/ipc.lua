@@ -18,7 +18,7 @@ function IPC:connect()
 
     self.pipe:connect(self.path)
 
-    return vim.fn.has('win32') or self.pipe:is_writable()
+    return vim.fn.has('win32') == 1 or self.pipe:is_writable()
 end
 
 function IPC:shutdown()

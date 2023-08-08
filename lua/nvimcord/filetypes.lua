@@ -1,9 +1,5 @@
 local M = {}
 
----@class FT
----@field name string
----@field asset string
-
 ---@param name string
 ---@param asset string
 ---@return FT
@@ -413,7 +409,7 @@ function M.assets()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)
-    return vim.fn.uniq(fts)
+    return vim.fn.uniq(fts) --[=[@as string[]]=]
 end
 
 ---@param filetype string
