@@ -1,10 +1,10 @@
 ---@class IPC
----@field pipe uv_pipe_t
+---@field pipe uv.uv_pipe_t
 local IPC = {}
 
 if vim.fn.has('win32') == 0 then
     IPC.path = ('%s/discord-ipc-0'):format(
-        vim.env.XDG_RUNTIME_DIR or vim.loop.os_tmpdir()
+        vim.env.XDG_RUNTIME_DIR or vim.uv.os_tmpdir()
     )
 else
     IPC.path = [[\\.\pipe\discord-ipc-0]]
@@ -13,12 +13,12 @@ end
 ---@return boolean
 function IPC:connect()
     if not self.pipe or self.pipe:is_closing() then
-        self.pipe = assert(vim.loop.new_pipe())
+        self.pipe = assert(vim.uv.new_pipe())
     end
 
     self.pipe:connect(self.path)
 
-    return vim.fn.has('win32') or self.pipe:is_writable()
+    return vim.fn.has('win32') == 1 or self.pipe:is_writable()
 end
 
 function IPC:shutdown()

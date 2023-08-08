@@ -29,12 +29,8 @@ function M.struct.pack(op, body)
     return table.concat(bytes, '')..body
 end
 
----@class Struct
----@field op integer
----@field body string
-
 ---@param body string
----@return Struct
+---@return nvimcord.Struct
 function M.struct.unpack(body)
     local byte
     local op = 0
@@ -65,15 +61,8 @@ function M.json.decode(body, done)
     end)
 end
 
----@alias log_level
---- |'DEBUG'
---- |'ERROR'
---- |'INFO'
---- |'TRACE'
---- |'WARN'
-
 ---@param msg string
----@param lvl log_level
+---@param lvl nvimcord.log_level
 ---@param min integer
 function M.log(msg, lvl, min)
     local level = vim.log.levels[lvl]

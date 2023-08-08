@@ -2,14 +2,7 @@ local fts = require 'nvimcord.filetypes'
 local Discord = require 'nvimcord.discord'
 local workspace = require 'nvimcord.workspace'
 
----@class Config
----@field autostart? boolean
----@field client_id? string
----@field dynamic_workspace? boolean
----@field large_file_icon? boolean
----@field log_level? integer
----@field workspace_name nil|string|fun(): string
----@field workspace_url nil|string|fun(): string
+---@type nvimcord.Config
 local config = {
     autostart = false,
     client_id = '954365489214291979',
@@ -76,13 +69,11 @@ end
 
 local function start()
     if type(Discord.config.workspace_name) == 'function' then
-        ---@diagnostic disable-next-line: cast-local-type
-        _ws_name_fun = Discord.config.workspace_name
+        _ws_name_fun = Discord.config.workspace_name --[[@as fun(): string]]
         Discord.config.workspace_name = Discord.config.workspace_name()
     end
     if type(Discord.config.workspace_url) == 'function' then
-        ---@diagnostic disable-next-line: cast-local-type
-        _ws_url_fun = Discord.config.workspace_url
+        _ws_url_fun = Discord.config.workspace_url --[[@as fun(): string]]
         Discord.config.workspace_url = Discord.config.workspace_url()
     end
 
@@ -106,7 +97,7 @@ local function stop()
     end
 end
 
----@param opts? Config
+---@param opts? nvimcord.Config
 local function setup(opts)
     if vim.version().minor < 9 then
         local log = require('nvimcord.util').log
@@ -142,6 +133,7 @@ local function setup(opts)
 
     if Discord.config.dynamic_workspace then
         vim.api.nvim_create_autocmd('DirChanged', {
+            ---@param event nvimcord.AutocmdArgs
             callback = function(event)
                 if _ws_name_fun then
                     Discord.config.workspace_name = _ws_name_fun()
@@ -157,7 +149,7 @@ local function setup(opts)
         })
     end
 
-    vim.api.nvim_create_user_command('NvimcordUpdate', function ()
+    vim.api.nvim_create_user_command('NvimcordUpdate', function()
         if Discord.authenticated then update() else start() end
     end, {desc = 'Update rich presence'})
     vim.api.nvim_create_user_command('NvimcordStop', function()

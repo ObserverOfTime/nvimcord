@@ -1,27 +1,6 @@
 local IPC = require 'nvimcord.ipc'
 local u = require 'nvimcord.util'
 
----@class Assets
----@field large_image string
----@field large_text string?
----@field small_image string?
----@field small_text string?
-
----@class Timestamps
----@field start number
----@field end number?
-
----@class Button
----@field label string
----@field url string
-
----@class Activity
----@field details string
----@field state string?
----@field timestamps Timestamps?
----@field buttons Button[]?
----@field assets Assets
-
 ---@enum OP
 local OP = {AUTHENTICATE = 0, FRAME = 1, CLOSE = 2}
 
@@ -39,23 +18,16 @@ local m = {
     nonce_err = 'Unexpected nonce: %s (expected %s)',
 }
 
----@class Discord
----@field config Config
----@field version string
----@field timer uv_timer_t
----@field nonce string
----@field pid integer
----@field start number?
----@field _last Activity?
+---@class nvimcord.Discord
 local Discord = {}
 setmetatable(Discord, {
     __gc = function() Discord:close() end
 })
 
----@param config Config
+---@param config nvimcord.Config
 function Discord:init(config)
     self.config = setmetatable({}, {
-        ---@param t Config
+        ---@param t nvimcord.Config
         ---@param k string
         __index = function(t, k)
             if vim.fn.exists('g:nvimcord#'..k) == 0 then
@@ -67,14 +39,14 @@ function Discord:init(config)
         end
     })
     self.authenticated = false
-    self.pid = assert(vim.loop.os_getpid())
-    self.timer = assert(vim.loop.new_timer())
+    self.pid = assert(vim.uv.os_getpid())
+    self.timer = assert(vim.uv.new_timer())
     -- TODO: 'v'..tostring(vim.version())
-    local version = vim.fn.execute('version')
+    local version = assert(vim.fn.execute('version'))
     self.version = vim.fn.split(version, '\n')[1]:sub(6)
 end
 
----@param lvl log_level
+---@param lvl nvimcord.log_level
 ---@param msg string?
 ---@vararg string
 function Discord:log(lvl, msg, ...)
@@ -111,7 +83,7 @@ function Discord:handshake(done, version)
     end)
 end
 
----@param activity Activity
+---@param activity nvimcord.Activity
 function Discord:set_activity(activity)
     if vim.deep_equal(activity, self._last) then return end
     self._last = activity

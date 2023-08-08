@@ -1,17 +1,19 @@
 local M = {}
 
----@class FT
----@field name string
----@field asset string
-
 ---@param name string
 ---@param asset string
----@return FT
+---@return nvimcord.FileType
 local function ft(name, asset)
     return {name = name, asset = asset}
 end
 
----@type table<string, FT>
+---@param val nvimcord.FileType
+---@return string
+local function asset(val)
+    return val.asset
+end
+
+---@type table<string, nvimcord.FileType>
 M.filetype = setmetatable({
     ['actionscript'] = ft('ActionScript', 'actionscript'),
     ['ada'] = ft('Ada', 'ada'),
@@ -244,13 +246,13 @@ M.filetype = setmetatable({
     ['zsh'] = ft('Zsh', 'shell'),
 }, {
     ---@param k string
-    ---@return FT
+    ---@return nvimcord.FileType
     __index = function(_, k)
         return ft(k, 'unknown')
     end
 })
 
----@type table<string, FT>
+---@type table<string, nvimcord.FileType>
 M.pattern = {
     ['^AndroidManifest%.xml$'] = ft('Android manifest', 'android'),
     ['^angular%.json$'] = ft('Angular config', 'angular'),
@@ -375,12 +377,6 @@ M.ignore.filename = {
     ['.exrc'] = true,
 }
 
----@param val FT
----@return string
-local function asset(val)
-    return val.asset
-end
-
 ---@return string[]
 function M.list()
     return vim.tbl_keys(M.filetype)
@@ -395,12 +391,12 @@ function M.assets()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)
-    return vim.fn.uniq(fts)
+    return vim.fn.uniq(fts) --[=[@as string[]]=]
 end
 
 ---@param filetype string
 ---@param filename string
----@return FT?
+---@return nvimcord.FileType?
 function M.get(filetype, filename)
     if M.ignore(filetype, filename) then
         return nil
