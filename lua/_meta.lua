@@ -1,5 +1,8 @@
 ---@meta
 
+---@type uv
+vim.uv = ...
+
 ---@class Config
 ---@field autostart? boolean
 ---@field client_id? string

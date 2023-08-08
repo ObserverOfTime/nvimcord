@@ -39,8 +39,8 @@ function Discord:init(config)
         end
     })
     self.authenticated = false
-    self.pid = assert(vim.loop.os_getpid())
-    self.timer = assert(vim.loop.new_timer())
+    self.pid = assert(vim.uv.os_getpid())
+    self.timer = assert(vim.uv.new_timer())
     -- TODO: 'v'..tostring(vim.version())
     local version = vim.fn.execute('version')
     self.version = vim.fn.split(version, '\n')[1]:sub(6)
