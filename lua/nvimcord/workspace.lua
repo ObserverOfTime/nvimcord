@@ -14,6 +14,7 @@ end
 function M.get_name()
     local cwd = vim.uv.cwd()
     local home = vim.uv.os_homedir()
+    ---@type string|nil
     local git = vim.fs.find('.git', {
         type = 'directory',
         stop = home,
