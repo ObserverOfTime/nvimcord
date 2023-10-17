@@ -101,6 +101,7 @@ M.filetype = setmetatable({
     ['html.twig'] = ft('Twig', 'twig'),
     ['htmldjango'] = ft('Django', 'django'),
     ['httplog'] = ft('log', 'log'),
+    ['hocon'] = ft('HOCON', 'config'),
     ['idl'] = ft('IDL', 'idl'),
     ['idris'] = ft('Idris', 'idris'),
     ['ipynb'] = ft('Jupyter Notebook', 'ipynb'),

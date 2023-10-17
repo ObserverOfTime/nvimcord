@@ -43,6 +43,7 @@ vim.uv = ...
 
 ---@class Discord
 ---@field config Config
+---@field authenticated boolean
 ---@field version string
 ---@field timer uv_timer_t
 ---@field nonce string
@@ -50,12 +51,7 @@ vim.uv = ...
 ---@field start number?
 ---@field _last Activity?
 
----@alias log_level
---- |'DEBUG'
---- |'ERROR'
---- |'INFO'
---- |'TRACE'
---- |'WARN'
+---@alias log_level 'DEBUG'|'ERROR'|'INFO'|'TRACE'|'WARN'
 
 ---@class AutocmdArgs
 ---@field buf integer
