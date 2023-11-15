@@ -72,7 +72,7 @@ function M.log(msg, lvl, min)
         end
         vim.schedule(function()
             vim.notify(msg, level, {
-                title = 'nvimcord', icon = 'ﭮ'
+                title = 'nvimcord', icon = '󰙯'
             })
         end)
     end
