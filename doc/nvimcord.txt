@@ -1,4 +1,4 @@
-*nvimcord.txt*            For NVIM v0.9.0            Last change: 2023 June 12
+*nvimcord.txt*          For NVIM v0.10.0         Last change: 2023 November 23
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
@@ -50,17 +50,19 @@ CONFIGURATION                                *nvimcord-nvimcord-configuration*
         autostart = false,
         -- Set the client ID (string)
         client_id = '954365489214291979',
+        -- Update workspace on chdir (boolean)
+        dynamic_workspace = false,
         -- Use the filetype as the large icon (boolean)
         large_file_icon = true,
         -- Set the log level (enum)
         log_level = vim.log.levels.INFO,
         -- Get the workspace name (function|string)
         workspace_name = function()
-          return --[[cwd basename]]
+          return --[[git root or cwd basename]]
         end,
         -- Get the workspace URL (function|string)
         workspace_url = function()
-          return ''
+          return --[[git remote URL]]
         end
     }
 <
@@ -72,6 +74,7 @@ This can be useful when using |exrc| or a project plugin.
 >vim
     let g:nvimcord#autostart = v:false
     let g:nvimcord#client_id = '954365489214291979'
+    let g:nvimcord#dynamic_workspace = v:false
     let g:nvimcord#large_file_icon = v:true
     let g:nvimcord#log_level = 2
     " NOTE: these can only be defined as strings
@@ -132,7 +135,7 @@ TODO                                                  *nvimcord-nvimcord-todo*
 
 - ☒ Ignore by filename
 - ☐ Cache filename patterns
-- ☐ Detect workspace through git
+- ☒ Detect workspace through git
 - ☒ Warn when pipe doesn’t exist
 - ☐ Set idle status after some time
 
