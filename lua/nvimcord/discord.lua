@@ -1,7 +1,7 @@
 local IPC = require 'nvimcord.ipc'
 local u = require 'nvimcord.util'
 
----@enum OP
+---@enum nvimcord.OP
 local OP = {AUTHENTICATE = 0, FRAME = 1, CLOSE = 2}
 
 local m = {
@@ -18,16 +18,16 @@ local m = {
     nonce_err = 'Unexpected nonce: %s (expected %s)',
 }
 
----@class Discord
+---@class nvimcord.Discord
 local Discord = {}
 setmetatable(Discord, {
     __gc = function() Discord:close() end
 })
 
----@param config Config
+---@param config nvimcord.Config
 function Discord:init(config)
     self.config = setmetatable({}, {
-        ---@param t Config
+        ---@param t nvimcord.Config
         ---@param k string
         __index = function(t, k)
             if vim.fn.exists('g:nvimcord#'..k) == 0 then
@@ -44,7 +44,7 @@ function Discord:init(config)
     self.version = ('v%s'):format(vim.version())
 end
 
----@param lvl log_level
+---@param lvl nvimcord.log_level
 ---@param msg string?
 ---@vararg string
 function Discord:log(lvl, msg, ...)
@@ -81,7 +81,7 @@ function Discord:handshake(done, version)
     end)
 end
 
----@param activity Activity
+---@param activity nvimcord.Activity
 function Discord:set_activity(activity)
     if vim.deep_equal(activity, self._last) then return end
     self._last = activity
@@ -109,7 +109,7 @@ function Discord:close()
     end
 end
 
----@param op OP
+---@param op nvimcord.OP
 ---@param data table
 ---@param done fun(ok: boolean)
 function Discord:call(op, data, done)

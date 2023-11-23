@@ -2,7 +2,7 @@ local fts = require 'nvimcord.filetypes'
 local Discord = require 'nvimcord.discord'
 local workspace = require 'nvimcord.workspace'
 
----@type Config
+---@type nvimcord.Config
 local config = {
     autostart = false,
     client_id = '954365489214291979',
@@ -95,11 +95,11 @@ local function stop()
     end
 end
 
----@param opts? Config
+---@param opts? nvimcord.Config
 local function setup(opts)
-    if vim.version().minor < 9 then
+    if vim.version().minor < 10 then
         local log = require('nvimcord.util').log
-        log('nvim v0.9 is required', 'ERROR', 0)
+        log('nvim v0.10 is required', 'ERROR', 0)
         return
     end
 
@@ -131,7 +131,7 @@ local function setup(opts)
 
     if Discord.config.dynamic_workspace then
         vim.api.nvim_create_autocmd('DirChanged', {
-            ---@param event AutocmdArgs
+            ---@param event nvimcord.AutocmdArgs
             callback = function(event)
                 if _ws_name_fun then
                     Discord.config.workspace_name = _ws_name_fun()

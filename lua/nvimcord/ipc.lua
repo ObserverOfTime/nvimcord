@@ -1,4 +1,4 @@
----@class IPC
+---@class nvimcord.IPC
 ---@field pipe uv_pipe_t
 local IPC = {}
 

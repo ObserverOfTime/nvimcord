@@ -1,9 +1,6 @@
 ---@meta
 
----@type uv
-vim.uv = ...
-
----@class Config
+---@class nvimcord.Config
 ---@field autostart? boolean
 ---@field client_id? string
 ---@field dynamic_workspace? boolean
@@ -12,48 +9,48 @@ vim.uv = ...
 ---@field workspace_name? string|fun(): string
 ---@field workspace_url? string|fun(): string
 
----@class Struct
+---@class nvimcord.Struct
 ---@field op integer
 ---@field body string
 
----@class FT
+---@class nvimcord.Filetype
 ---@field name string
 ---@field asset string
 
----@class Assets
+---@class nvimcord.Activity.Assets
 ---@field large_image string
 ---@field large_text string?
 ---@field small_image string?
 ---@field small_text string?
 
----@class Timestamps
+---@class nvimcord.Activity.Timestamps
 ---@field start number
 ---@field end number?
 
----@class Button
+---@class nvimcord.Activity.Button
 ---@field label string
 ---@field url string
 
----@class Activity
+---@class nvimcord.Activity
 ---@field details string
 ---@field state string?
----@field timestamps Timestamps?
----@field buttons Button[]?
----@field assets Assets
+---@field timestamps nvimcord.Activity.Timestamps?
+---@field buttons nvimcord.Activity.Button[]?
+---@field assets nvimcord.Activity.Assets
 
----@class Discord
----@field config Config
+---@class nvimcord.Discord
+---@field config nvimcord.Config
 ---@field authenticated boolean
 ---@field version string
 ---@field timer uv_timer_t
 ---@field nonce string
 ---@field pid integer
 ---@field start number?
----@field _last Activity?
+---@field _last nvimcord.Activity?
 
----@alias log_level 'DEBUG'|'ERROR'|'INFO'|'TRACE'|'WARN'
+---@alias nvimcord.log_level 'DEBUG'|'ERROR'|'INFO'|'WARN'
 
----@class AutocmdArgs
+---@class nvimcord.AutocmdArgs
 ---@field buf integer
 ---@field event string
 ---@field file string

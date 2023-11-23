@@ -2,12 +2,12 @@ local M = {}
 
 ---@param name string
 ---@param asset string
----@return FT
+---@return nvimcord.Filetype
 local function ft(name, asset)
     return {name = name, asset = asset}
 end
 
----@type table<string, FT>
+---@type table<string, nvimcord.Filetype>
 M.filetype = setmetatable({
     ['actionscript'] = ft('ActionScript', 'actionscript'),
     ['ada'] = ft('Ada', 'ada'),
@@ -238,13 +238,13 @@ M.filetype = setmetatable({
     ['zsh'] = ft('Zsh', 'shell'),
 }, {
     ---@param k string
-    ---@return FT
+    ---@return nvimcord.Filetype
     __index = function(_, k)
         return ft(k, 'unknown')
     end
 })
 
----@type table<string, FT>
+---@type table<string, nvimcord.Filetype>
 M.pattern = {
     ['^AndroidManifest%.xml$'] = ft('Android manifest', 'android'),
     ['^angular%.json$'] = ft('Angular config', 'angular'),
@@ -334,9 +334,9 @@ M.pattern = {
     ['^%yarn%.lock$'] = ft('Yarn lockfile', 'yarn'),
 }
 
----@class ignore
+---@class nvimcord.Ignore
 M.ignore = setmetatable({}, {
-    ---@param t ignore
+    ---@param t nvimcord.Ignore
     ---@param type string
     ---@param name string
     __call = function(t, type, name)
@@ -390,7 +390,7 @@ M.ignore.filename = {
     ['.exrc'] = true,
 }
 
----@param val FT
+---@param val nvimcord.Filetype
 ---@return string
 local function asset(val)
     return val.asset
@@ -415,7 +415,7 @@ end
 
 ---@param filetype string
 ---@param filename string
----@return FT?
+---@return nvimcord.Filetype?
 function M.get(filetype, filename)
     if M.ignore(filetype, filename) then
         return nil

@@ -7,7 +7,7 @@ function M.get_url()
     }, {text = true}):wait()
     if o.code ~= 0 then return '' end
     local pattern = [[\%([a-z+]\+://\)\?\%(\w\+@\)\?\(.\{-1,}\)[:/]\(.\{-1,}\)\%(.git\)\?\n]]
-    return vim.fn.substitute(o.stdout, pattern, [[https://\1/\2]], '')
+    return assert(vim.fn.substitute(o.stdout, pattern, [[https://\1/\2]], ''))
 end
 
 ---@return string
