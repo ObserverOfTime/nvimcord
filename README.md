@@ -10,48 +10,59 @@ A Discord Rich Presence plugin for Neovim written in Lua.
 
 ## Installation
 
-### packer
+### lazy.nvim
 
 ```lua
-use 'ObserverOfTime/nvimcord'
+{
+  'ObserverOfTime/nvimcord',
+  opts = {
+    ...
+  }
+}
 ```
 
-### plug
+### pckr.nvim
 
-```vim
-Plug 'ObserverOfTime/nvimcord'
-```
-
-### dein
-
-```vim
-call dein#add('ObserverOfTime/nvimcord')
+```lua
+{
+  'ObserverOfTime/nvimcord',
+  config = function()
+    require('nvimcord').setup {
+      ...
+    }
+  end
+}
 ```
 
 ## Configuration
 
+These are the default values:
+
 ```lua
--- NOTE: these are the defaults
-require('nvimcord').setup {
-    -- Start the RPC manually (boolean)
-    autostart = false,
-    -- Set the client ID (string)
-    client_id = '954365489214291979',
-    -- Update workspace on chdir (boolean)
-    dynamic_workspace = false,
-    -- Use the filetype as the large icon (boolean)
-    large_file_icon = true,
-    -- Set the log level (enum)
-    log_level = vim.log.levels.INFO,
-    -- Get the workspace name (function|string)
-    workspace_name = function()
-      return --[[git root or cwd basename]]
-    end,
-    -- Get the workspace URL (function|string)
-    workspace_url = function()
-      return --[[git remote URL]]
-    end
-}
+-- Start the RPC manually (boolean)
+autostart = false
+
+-- Set the client ID (string)
+client_id = '954365489214291979'
+
+-- Update workspace on chdir (boolean)
+dynamic_workspace = false
+
+-- Use the filetype as the large icon (boolean)
+large_file_icon = true
+
+-- Set the log level (vim.log.levels.*)
+log_level = vim.log.levels.INFO
+
+-- Get the workspace name (function|string)
+workspace_name = function()
+  return --[[git root or cwd basename]]
+end
+
+-- Get the workspace URL (function|string)
+workspace_url = function()
+  return --[[git remote URL]]
+end
 ```
 
 Options can also be configured using Vim variables.
@@ -156,10 +167,34 @@ The icons use the basic colours from [file-icons/atom][colours].
 
 ## Alternatives
 
-* [presence.nvim](https://github.com/andweeb/presence.nvim) (Lua)
-* [discord.nvim](https://github.com/aurieh/discord.nvim) (Python)
-  * [or my own fork](https://github.com/ObserverOfTime/discord.nvim)
-* [vimsence](https://github.com/hugolgst/vimsence) (Python)
-* [vimdiscord](https://github.com/vbe0201/vimdiscord) (Python)
-* [vimcord](https://github.com/Stoozy/vimcord) (Python)
-* [vdrpc](https://github.com/goopey7/vdrpc) (C)
+- [lpturmel/discord.nvim] (Lua + Rust)
+- [IogaMaster/neocord] (Lua)
+- [Cyuria/discord.nvim] (Lua + C++)
+- [andweeb/presence.nvim] (Lua)
+- [aurieh/discord.nvim] (Remote Python)
+  - [or my own fork][ObserverOfTime/discord.nvim]
+- [Stoozy/vimcord] Python
+- [sardonicism-04/nvim-rich-presence] (VimL + Rust)
+- [LeonardSSH/coc-discord-rpc] (TypeScript)
+- [vbe0201/vimdiscord] (Python)
+- [goopey7/vdrpc] (VimL + C)
+- [amiralies/coc-discord] (TypeScript)
+- [SamJakob/coc-discord-presence] (TypeScript)
+- [GabeFrahm/vim-presence] (Python)
+- [TCL100K/vim-discord-rpc] (Python)
+
+[amiralies/coc-discord]: https://github.com/amiralies/coc-discord
+[andweeb/presence.nvim]: https://github.com/andweeb/presence.nvim
+[aurieh/discord.nvim]: https://github.com/aurieh/discord.nvim
+[Cyuria/discord.nvim]: https://github.com/Cyuria/discord.nvim
+[GabeFrahm/vim-presence]: https://github.com/GabeFrahm/vim-presence
+[goopey7/vdrpc]: https://github.com/goopey7/vdrpc
+[IogaMaster/neocord]: https://github.com/IogaMaster/neocord
+[LeonardSSH/coc-discord-rpc]: https://github.com/LeonardSSH/coc-discord-rpc
+[lpturmel/discord.nvim]: https://github.com/lpturmel/discord.nvim
+[ObserverOfTime/discord.nvim]: https://github.com/ObserverOfTime/discord.nvim
+[SamJakob/coc-discord-presence]: https://github.com/SamJakob/coc-discord-presence
+[sardonicism-04/nvim-rich-presence]: https://github.com/sardonicism-04/nvim-rich-presence
+[Stoozy/vimcord]: https://github.com/Stoozy/vimcord
+[TCL100K/vim-discord-rpc]: https://github.com/TCL100K/vim-discord-rpc
+[vbe0201/vimdiscord]: https://github.com/vbe0201/vimdiscord
