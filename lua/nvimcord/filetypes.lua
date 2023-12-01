@@ -347,40 +347,14 @@ M.ignore = setmetatable({}, {
     end
 })
 
+-- NOTE: only filetypes with an empty buftype should be included
 ---@type table<string, boolean>
 M.ignore.filetype = {
-    ['checkhealth'] = true,
-    ['dap-repl'] = true,
-    ['dapui_breakpoints'] = true,
-    ['dapui_scopes'] = true,
-    ['dapui_stacks'] = true,
-    ['dapui_watches'] = true,
-    ['diff'] = true,
-    ['fugitive'] = true,
-    ['fugitiveblame'] = true,
-    ['fzf'] = true,
     ['gitcommit'] = true,
     ['gitrebase'] = true,
     ['gitsendemail'] = true,
-    ['help'] = true,
     ['mail'] = true,
-    ['man'] = true,
     ['netrw'] = true,
-    ['neotest-summary'] = true,
-    ['null-ls-info'] = true,
-    ['packer'] = true,
-    ['qf'] = true,
-    ['query'] = true,
-    ['lspinfo'] = true,
-    ['scratch'] = true,
-    ['shada'] = true,
-    ['snippet'] = true,
-    ['snippets'] = true,
-    ['toggleterm'] = true,
-    ['tsplayground'] = true,
-    ['undotree'] = true,
-    ['unicode'] = true,
-    ['viminfo'] = true,
     ['xxd'] = true,
     ['zip'] = true,
 }
@@ -390,6 +364,7 @@ M.ignore.filename = {
     [''] = true,
     ['[Command Line]'] = true,
     ['.nvimrc'] = true,
+    ['.nvim.lua'] = true,
     ['.exrc'] = true,
 }
 

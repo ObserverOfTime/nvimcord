@@ -20,15 +20,13 @@ local config = {
 
 local function update()
     local bufnr = vim.api.nvim_get_current_buf()
-    local fname = vim.fs.basename(
-        vim.api.nvim_buf_get_name(bufnr)
-    )
+    local fname = vim.fs.basename(vim.api.nvim_buf_get_name(bufnr))
 
-    local ftype = fts.get(vim.bo[bufnr].filetype, fname)
+    if vim.bo[bufnr].buftype ~= '' then return end
+    local ftype = fts.get(vim.bo[bufnr].filetype, assert(fname))
     if ftype == nil or ftype.name == '' then return end
 
-    local readonly = vim.bo[bufnr].readonly
-    readonly = readonly or not vim.bo[bufnr].modifiable
+    local readonly = vim.bo[bufnr].readonly or not vim.bo[bufnr].modifiable
     local action = readonly and 'Reading ' or 'Editing '
 
     local state, buttons = nil, nil
