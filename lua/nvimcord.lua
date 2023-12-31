@@ -99,9 +99,9 @@ end
 
 ---@param opts? nvimcord.Config
 local function setup(opts)
-    if vim.version().minor < 9 then
+    if vim.version().minor < 10 then
         local log = require('nvimcord.util').log
-        log('nvim v0.9 is required', 'ERROR', 0)
+        log('nvim v0.10 is required', 'ERROR', 0)
         return
     end
 

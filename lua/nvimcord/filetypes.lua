@@ -384,10 +384,10 @@ end
 
 ---@return string[]
 function M.assets()
-    local fts = vim.tbl_flatten {
+    local fts = vim.iter({
         vim.tbl_map(asset, vim.tbl_values(M.filetype)),
         vim.tbl_map(asset, vim.tbl_values(M.pattern))
-    }
+    }):flatten():totable()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)

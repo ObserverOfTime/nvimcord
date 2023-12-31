@@ -10,48 +10,59 @@ A Discord Rich Presence plugin for Neovim written in Lua.
 
 ## Installation
 
-### packer
+### lazy.nvim
 
 ```lua
-use 'ObserverOfTime/nvimcord'
+{
+  'ObserverOfTime/nvimcord',
+  opts = {
+    ...
+  }
+}
 ```
 
-### plug
+### pckr.nvim
 
-```vim
-Plug 'ObserverOfTime/nvimcord'
-```
-
-### dein
-
-```vim
-call dein#add('ObserverOfTime/nvimcord')
+```lua
+{
+  'ObserverOfTime/nvimcord',
+  config = function()
+    require('nvimcord').setup {
+      ...
+    }
+  end
+}
 ```
 
 ## Configuration
 
+These are the default values:
+
 ```lua
--- NOTE: these are the defaults
-require('nvimcord').setup {
-    -- Start the RPC manually (boolean)
-    autostart = false,
-    -- Set the client ID (string)
-    client_id = '954365489214291979',
-    -- Update workspace on chdir (boolean)
-    dynamic_workspace = false,
-    -- Use the filetype as the large icon (boolean)
-    large_file_icon = true,
-    -- Set the log level (enum)
-    log_level = vim.log.levels.INFO,
-    -- Get the workspace name (function|string)
-    workspace_name = function()
-      return --[[git root or cwd basename]]
-    end,
-    -- Get the workspace URL (function|string)
-    workspace_url = function()
-      return --[[git remote URL]]
-    end
-}
+-- Start the RPC manually (boolean)
+autostart = false
+
+-- Set the client ID (string)
+client_id = '954365489214291979'
+
+-- Update workspace on chdir (boolean)
+dynamic_workspace = false
+
+-- Use the filetype as the large icon (boolean)
+large_file_icon = true
+
+-- Set the log level (vim.log.levels.*)
+log_level = vim.log.levels.INFO
+
+-- Get the workspace name (function|string)
+workspace_name = function()
+  return --[[git root or cwd basename]]
+end
+
+-- Get the workspace URL (function|string)
+workspace_url = function()
+  return --[[git remote URL]]
+end
 ```
 
 Options can also be configured using Vim variables.
