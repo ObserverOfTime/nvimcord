@@ -42,7 +42,11 @@ local function update()
     local assets = {}
     if Discord.config.large_file_icon then
         assets.large_image = ftype.asset
-        assets.large_text = ftype.name
+        if #ftype.name > 1 then
+            assets.large_text = ftype.name
+        else
+            assets.large_text = ftype.name..'­'
+        end
         assets.small_image = 'neovim'
         assets.small_text = Discord.version
     else
