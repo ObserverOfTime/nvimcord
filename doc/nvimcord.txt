@@ -1,68 +1,84 @@
-*nvimcord.txt*          For NVIM v0.9.0          Last change: 2023 December 01
+*nvimcord.txt*            For NVIM v0.10.0            Last change: 2024 May 17
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
 
-1. nvimcord                                                |nvimcord-nvimcord|
-  - Installation                              |nvimcord-nvimcord-installation|
-  - Configuration                            |nvimcord-nvimcord-configuration|
-  - Commands                                      |nvimcord-nvimcord-commands|
-  - TODO                                              |nvimcord-nvimcord-todo|
-  - Assets                                          |nvimcord-nvimcord-assets|
-  - Alternatives                              |nvimcord-nvimcord-alternatives|
-
-==============================================================================
-1. nvimcord                                                *nvimcord-nvimcord*
+1. Installation                                        |nvimcord-installation|
+  - lazy.nvim                                |nvimcord-installation-lazy.nvim|
+  - pckr.nvim                                |nvimcord-installation-pckr.nvim|
+2. Configuration                                      |nvimcord-configuration|
+  - Filetypes                               |nvimcord-configuration-filetypes|
+3. Commands                                                |nvimcord-commands|
+4. TODO                                                        |nvimcord-todo|
+5. Assets                                                    |nvimcord-assets|
+  - Sources                                          |nvimcord-assets-sources|
+  - Palette                                          |nvimcord-assets-palette|
+6. Alternatives                                        |nvimcord-alternatives|
+nvimcord
 
 A Discord Rich Presence plugin for Neovim written in Lua.
 
 
-INSTALLATION                                  *nvimcord-nvimcord-installation*
+==============================================================================
+1. Installation                                        *nvimcord-installation*
 
 
-PACKER ~
-
->lua
-    use 'ObserverOfTime/nvimcord'
-<
-
-
-PLUG ~
-
->vim
-    Plug 'ObserverOfTime/nvimcord'
-<
-
-
-DEIN ~
-
->vim
-    call dein#add('ObserverOfTime/nvimcord')
-<
-
-
-CONFIGURATION                                *nvimcord-nvimcord-configuration*
+LAZY.NVIM                                    *nvimcord-installation-lazy.nvim*
 
 >lua
-    -- NOTE: these are the defaults
-    require('nvimcord').setup {
-        -- Start the RPC manually (boolean)
-        autostart = false,
-        -- Set the client ID (string)
-        client_id = '954365489214291979',
-        -- Use the filetype as the large icon (boolean)
-        large_file_icon = true,
-        -- Set the log level (enum)
-        log_level = vim.log.levels.INFO,
-        -- Get the workspace name (function|string)
-        workspace_name = function()
-          return --[[cwd basename]]
-        end,
-        -- Get the workspace URL (function|string)
-        workspace_url = function()
-          return ''
-        end
+    {
+      'ObserverOfTime/nvimcord',
+      opts = {
+        ...
+      }
     }
+<
+
+
+PCKR.NVIM                                    *nvimcord-installation-pckr.nvim*
+
+>lua
+    {
+      'ObserverOfTime/nvimcord',
+      config = function()
+        require('nvimcord').setup {
+          ...
+        }
+      end
+    }
+<
+
+
+==============================================================================
+2. Configuration                                      *nvimcord-configuration*
+
+These are the default values:
+
+>lua
+    -- Start the RPC manually (boolean)
+    autostart = false
+    
+    -- Set the client ID (string)
+    client_id = '954365489214291979'
+    
+    -- Update workspace on chdir (boolean)
+    dynamic_workspace = false
+    
+    -- Use the filetype as the large icon (boolean)
+    large_file_icon = true
+    
+    -- Set the log level (vim.log.levels.*)
+    log_level = vim.log.levels.INFO
+    
+    -- Get the workspace name (function|string)
+    workspace_name = function()
+      return --[[git root or cwd basename]]
+    end
+    
+    -- Get the workspace URL (function|string)
+    workspace_url = function()
+      return --[[git remote URL]]
+    end
 <
 
 Options can also be configured using Vim variables.
@@ -72,6 +88,7 @@ This can be useful when using |exrc| or a project plugin.
 >vim
     let g:nvimcord#autostart = v:false
     let g:nvimcord#client_id = '954365489214291979'
+    let g:nvimcord#dynamic_workspace = v:false
     let g:nvimcord#large_file_icon = v:true
     let g:nvimcord#log_level = 2
     " NOTE: these can only be defined as strings
@@ -80,7 +97,7 @@ This can be useful when using |exrc| or a project plugin.
 <
 
 
-FILETYPES ~
+FILETYPES                                   *nvimcord-configuration-filetypes*
 
 >lua
     local fts = require 'nvimcord.filetypes'
@@ -105,44 +122,47 @@ FILETYPES ~
 <
 
 
-COMMANDS                                          *nvimcord-nvimcord-commands*
+==============================================================================
+3. Commands                                                *nvimcord-commands*
 
 
-:NVIMCORDUPDATE
+:NVIMCORDUPDATE ~
 
 Start or update the rich presence.
 
 
-:NVIMCORDSTOP
+:NVIMCORDSTOP ~
 
 Stop the rich presence.
 
 
-:NVIMCORDFILETYPES
+:NVIMCORDFILETYPES ~
 
 List the supported filetypes.
 
 
-:NVIMCORDASSETS
+:NVIMCORDASSETS ~
 
 List the supported assets.
 
 
-TODO                                                  *nvimcord-nvimcord-todo*
+==============================================================================
+4. TODO                                                        *nvimcord-todo*
 
 - ☒ Ignore by filename
 - ☐ Cache filename patterns
-- ☐ Detect workspace through git
+- ☒ Detect workspace through git
 - ☒ Warn when pipe doesn’t exist
 - ☐ Set idle status after some time
 
 
-ASSETS                                              *nvimcord-nvimcord-assets*
+==============================================================================
+5. Assets                                                    *nvimcord-assets*
 
 The assets are available here <https://cloud.disroot.org/s/3HCpppopkrcR6iK>.
 
 
-SOURCES ~
+SOURCES                                              *nvimcord-assets-sources*
 
 - file-icons/icons <https://github.com/file-icons/icons>
 - file-icons/DevOpicons <https://github.com/file-icons/DevOpicons>
@@ -150,13 +170,14 @@ SOURCES ~
 - primer/octicons <https://github.com/primer/octicons>
 
 
-PALETTE ~
+PALETTE                                              *nvimcord-assets-palette*
 
 The icons use the basic colours from file-icons/atom
 <https://github.com/file-icons/atom/blob/master/styles/colours.less#L10-L19>.
 
 
-ALTERNATIVES                                  *nvimcord-nvimcord-alternatives*
+==============================================================================
+6. Alternatives                                        *nvimcord-alternatives*
 
 - lpturmel/discord.nvim <https://github.com/lpturmel/discord.nvim> (Lua + Rust)
 - IogaMaster/neocord <https://github.com/IogaMaster/neocord> (Lua)
