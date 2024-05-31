@@ -1,4 +1,4 @@
-*nvimcord.txt*            For NVIM v0.10.0            Last change: 2024 May 17
+*nvimcord.txt*            For NVIM v0.10.0            Last change: 2024 May 31
 
 ==============================================================================
 Table of Contents                                 *nvimcord-table-of-contents*
@@ -14,8 +14,6 @@ Table of Contents                                 *nvimcord-table-of-contents*
   - Sources                                          |nvimcord-assets-sources|
   - Palette                                          |nvimcord-assets-palette|
 6. Alternatives                                        |nvimcord-alternatives|
-nvimcord
-
 A Discord Rich Presence plugin for Neovim written in Lua.
 
 
