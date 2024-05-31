@@ -2,9 +2,9 @@
 
 <img src=".github/logo.png" alt="Logo" align="right" width="128"/>
 
-<!-- panvimdoc-ignore-end -->
-
 # nvimcord
+
+<!-- panvimdoc-ignore-end -->
 
 A Discord Rich Presence plugin for Neovim written in Lua.
 

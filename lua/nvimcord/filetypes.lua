@@ -280,6 +280,7 @@ M.pattern = {
     ['^CONTRIBUTING%.md'] = ft('contributor guidelines', 'collab'),
     ['^pubspec%.yaml$'] = ft('Dart pubspec', 'dart'),
     ['^pubspec%.lock$'] = ft('Dart pubspec', 'dart'),
+    ['^dependabot%.ya?ml$'] = ft('Dependabot', 'dependabot'),
     ['%.desktop$'] = ft('Desktop entry', 'freedesktop'),
     ['docker%-compose.*%.ya?ml$'] = ft('Docker Compose', 'docker'),
     ['^%.dockerignore$'] = ft('Docker ignore', 'docker'),
