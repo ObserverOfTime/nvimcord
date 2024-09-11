@@ -4,9 +4,9 @@
 
 # nvimcord
 
-<!-- panvimdoc-ignore-end -->
-
 A Discord Rich Presence plugin for Neovim written in Lua.
+
+<!-- panvimdoc-ignore-end -->
 
 ## Installation
 
@@ -167,21 +167,22 @@ The icons use the basic colours from [file-icons/atom][colours].
 
 ## Alternatives
 
-- [lpturmel/discord.nvim] (Lua + Rust)
-- [IogaMaster/neocord] (Lua)
-- [Cyuria/discord.nvim] (Lua + C++)
+- [amiralies/coc-discord] (TypeScript)
 - [andweeb/presence.nvim] (Lua)
 - [aurieh/discord.nvim] (Remote Python)
   - [or my own fork][ObserverOfTime/discord.nvim]
-- [Stoozy/vimcord] Python
-- [sardonicism-04/nvim-rich-presence] (VimL + Rust)
-- [LeonardSSH/coc-discord-rpc] (TypeScript)
-- [vbe0201/vimdiscord] (Python)
-- [goopey7/vdrpc] (VimL + C)
-- [amiralies/coc-discord] (TypeScript)
-- [SamJakob/coc-discord-presence] (TypeScript)
+- [Cyuria/discord.nvim] (Lua + C++)
 - [GabeFrahm/vim-presence] (Python)
+- [goopey7/vdrpc] (VimL + C)
+- [IogaMaster/neocord] (Lua)
+- [LeonardSSH/coc-discord-rpc] (TypeScript)
+- [lpturmel/discord.nvim] (Lua + Rust)
+- [SamJakob/coc-discord-presence] (TypeScript)
+- [sardonicism-04/nvim-rich-presence] (VimL + Rust)
+- [Stoozy/vimcord] Python
 - [TCL100K/vim-discord-rpc] (Python)
+- [vbe0201/vimdiscord] (Python)
+- [vyfor/cord.nvim] (Lua + Rust)
 
 [amiralies/coc-discord]: https://github.com/amiralies/coc-discord
 [andweeb/presence.nvim]: https://github.com/andweeb/presence.nvim
@@ -198,3 +199,4 @@ The icons use the basic colours from [file-icons/atom][colours].
 [Stoozy/vimcord]: https://github.com/Stoozy/vimcord
 [TCL100K/vim-discord-rpc]: https://github.com/TCL100K/vim-discord-rpc
 [vbe0201/vimdiscord]: https://github.com/vbe0201/vimdiscord
+[vyfor/cord.nvim]: https://github.com/vyfor/cord.nvim
