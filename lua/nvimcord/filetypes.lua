@@ -243,6 +243,7 @@ M.filetype = setmetatable({
     ['xslt'] = ft('XSLT', 'xml'),
     ['yacc'] = ft('Bison', 'bison'),
     ['yaml'] = ft('YAML', 'yaml'),
+    ['zig'] = ft('Zig', 'zig'),
     ['zsh'] = ft('Zsh', 'shell'),
 }, {
     ---@param k string
