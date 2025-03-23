@@ -106,13 +106,15 @@ local function setup(opts)
     end
 
     opts = opts or {}
-    vim.validate('autostart', opts.autostart, 'boolean', true)
-    vim.validate('client_id', opts.client_id, 'string', true)
-    vim.validate('dynamic_workspace', opts.dynamic_workspace, 'boolean', true)
-    vim.validate('large_file_icon', opts.large_file_icon, 'boolean', true)
-    vim.validate('log_level', opts.log_level, 'number', true)
-    vim.validate('workspace_name', opts.workspace_name, {'string', 'function'}, true)
-    vim.validate('workspace_url', opts.workspace_url, {'string', 'function'}, true)
+    vim.validate {
+        autostart = {opts.autostart, 'boolean', true},
+        client_id = {opts.client_id, 'string', true},
+        dynamic_workspace = {opts.dynamic_workspace, 'boolean', true},
+        large_file_icon = {opts.large_file_icon, 'boolean', true},
+        log_level = {opts.log_level, 'number', true},
+        workspace_name = {opts.workspace_name, {'string', 'function'}, true},
+        workspace_url = {opts.workspace_url, {'string', 'function'}, true}
+    }
     Discord:init(vim.tbl_deep_extend('force', config, opts))
 
     vim.api.nvim_create_augroup('nvimcord', {clear = true})
