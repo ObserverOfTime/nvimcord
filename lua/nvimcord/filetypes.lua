@@ -393,7 +393,11 @@ function M.assets()
     table.insert(fts, 'neovim')
     table.insert(fts, 'unknown')
     table.sort(fts)
-    return vim.fn.uniq(fts) --[=[@as string[]]=]
+    if vim.list ~= nil then
+        return vim.list.unique(fts)
+    else
+        return vim.fn.uniq(fts) --[=[@as string[]]=]
+    end
 end
 
 ---@param filetype string
